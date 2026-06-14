@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MÂY FOOD – Nhậu Chill · Mồi Ngon · Giá Hợp Lý</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Be+Vietnam+Pro:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ===================== TOKENS ===================== */
+  :root {
+    --gold:       #C9A84C;
+    --gold-light: #E8C96B;
+    --gold-dim:   #7A5E28;
+    --black:      #0A0A0A;
+    --surface:    #111111;
+    --surface2:   #1A1A1A;
+    --surface3:   #222222;
+    --text:       #F0EAD6;
+    --text-muted: #888880;
+    --radius:     8px;
+    --transition: 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  /* ===================== RESET ===================== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  img { display: block; max-width: 100%; }
+  a { text-decoration: none; color: inherit; }
+
+  /* ===================== SCROLLBAR ===================== */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--surface); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 3px; }
+
+  /* ===================== NAV ===================== */
+  #navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+    background: transparent;
+    transition: background var(--transition), box-shadow var(--transition);
+  }
+  #navbar.scrolled {
+    background: rgba(10,10,10,0.97);
+    box-shadow: 0 2px 24px rgba(0,0,0,0.7);
+    border-bottom: 1px solid rgba(201,168,76,0.18);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 2px;
+  }
+  .nav-logo span { color: var(--text); }
+  .nav-links {
+    display: flex; gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 500;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: var(--text-muted);
+    transition: color var(--transition);
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute;
+    bottom: -4px; left: 0; right: 0;
+    height: 1px; background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform var(--transition);
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .hamburger {
+    display: none; flex-direction: column;
+    gap: 5px; cursor: pointer; padding: 4px;
+  }
+  .hamburger span {
+    width: 26px; height: 2px;
+    background: var(--gold); border-radius: 2px;
+    transition: var(--transition);
+  }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+  .mobile-menu {
+    display: none; position: fixed;
+    top: 68px; left: 0; right: 0;
+    background: rgba(10,10,10,0.98);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    padding: 1.5rem;
+    z-index: 899;
+    backdrop-filter: blur(12px);
+  }
+  .mobile-menu.open { display: block; }
+  .mobile-menu ul { list-style: none; display: flex; flex-direction: column; gap: 0; }
+  .mobile-menu ul li a {
+    display: block; padding: 0.85rem 0;
+    font-size: 1rem; font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 1px; text-transform: uppercase;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: color var(--transition);
+  }
+  .mobile-menu ul li a:hover { color: var(--gold); }
+
+  /* ===================== GOLD LINE ===================== */
+  .gold-line {
+    width: 56px; height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    margin: 1rem 0;
+  }
+  .gold-line.center { margin: 1rem auto; }
+
+  /* ===================== SECTION LABEL ===================== */
+  .section-eyebrow {
+    font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.15;
+    color: var(--text);
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  /* ===================== HERO ===================== */
+  #hero {
+    position: relative; min-height: 100svh;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    background: var(--black);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 70% at 60% 40%, rgba(201,168,76,0.10) 0%, transparent 70%),
+      url('https://images.unsplash.com/photo-1544025162-d76694265947?w=1600&q=80') center/cover no-repeat;
+    filter: brightness(0.28);
+    transform: scale(1.04);
+    transition: transform 8s ease;
+  }
+  #hero:hover .hero-bg { transform: scale(1); }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg,
+      rgba(10,10,10,0.3) 0%,
+      rgba(10,10,10,0.1) 40%,
+      rgba(10,10,10,0.7) 85%,
+      var(--black) 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center; padding: 2rem 5%;
+    max-width: 860px;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 40px;
+    padding: 6px 18px;
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 12vw, 7.5rem);
+    font-weight: 900; line-height: 0.95;
+    letter-spacing: -1px;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+  .hero-title .gold { color: var(--gold); }
+  .hero-sub {
+    font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+    font-weight: 300; letter-spacing: 2px;
+    color: rgba(240,234,214,0.65);
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+  }
+  .hero-meta {
+    display: flex; align-items: center; justify-content: center;
+    gap: 2rem; margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    font-size: 0.82rem; color: var(--text-muted);
+    letter-spacing: 1px;
+  }
+  .hero-meta-item strong { color: var(--gold-light); font-weight: 600; }
+  .hero-dot { width: 3px; height: 3px; background: var(--gold-dim); border-radius: 50%; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 32px; border-radius: var(--radius);
+    font-size: 0.9rem; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+    cursor: pointer; border: none;
+    transition: var(--transition);
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--black);
+    box-shadow: 0 4px 24px rgba(201,168,76,0.35);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(201,168,76,0.5);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid rgba(201,168,76,0.4);
+  }
+  .btn-outline:hover {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.08);
+    color: var(--gold);
+  }
+  .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: var(--text-muted); font-size: 0.7rem; letter-spacing: 2px;
+    text-transform: uppercase; z-index: 2;
+    animation: bobble 2.2s ease-in-out infinite;
+  }
+  .hero-scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+  @keyframes bobble { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+  /* ===================== SECTIONS ===================== */
+  section { padding: 100px 5%; }
+  .container { max-width: 1140px; margin: 0 auto; }
+
+  /* ===================== ABOUT ===================== */
+  #about { background: var(--surface); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+  }
+  .about-img-wrap {
+    position: relative;
+  }
+  .about-img-wrap::before {
+    content: '';
+    position: absolute; top: -14px; left: -14px;
+    right: 14px; bottom: 14px;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: var(--radius);
+    pointer-events: none;
+  }
+  .about-img-wrap img {
+    width: 100%; border-radius: var(--radius);
+    object-fit: cover; aspect-ratio: 4/3;
+  }
+  .about-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.2rem; margin-top: 2rem;
+  }
+  .about-stat {
+    background: var(--surface2);
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: var(--radius);
+    padding: 1.2rem;
+  }
+  .about-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900;
+    color: var(--gold); line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .about-stat-label {
+    font-size: 0.78rem; font-weight: 500;
+    color: var(--text-muted); text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ===================== MENU ===================== */
+  #menu { background: var(--black); }
+  .menu-tabs {
+    display: flex; gap: 0.5rem;
+    margin: 2.5rem 0 2rem;
+    flex-wrap: wrap;
+  }
+  .menu-tab {
+    padding: 9px 20px; border-radius: 40px;
+    font-size: 0.82rem; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+    cursor: pointer; border: 1px solid rgba(201,168,76,0.25);
+    background: transparent; color: var(--text-muted);
+    transition: var(--transition);
+  }
+  .menu-tab.active, .menu-tab:hover {
+    background: var(--gold); color: var(--black);
+    border-color: var(--gold);
+  }
+  .menu-panel { display: none; }
+  .menu-panel.active { display: grid; }
+  .menu-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1px;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.08);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .menu-item {
+    background: var(--surface);
+    padding: 1.4rem 1.6rem;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem;
+    transition: background var(--transition);
+  }
+  .menu-item:hover { background: var(--surface2); }
+  .menu-item-info { flex: 1; }
+  .menu-item-name {
+    font-weight: 600; font-size: 0.95rem;
+    color: var(--text); margin-bottom: 0.25rem;
+  }
+  .menu-item-note {
+    font-size: 0.78rem; color: var(--text-muted);
+  }
+  .menu-item-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--gold); white-space: nowrap;
+  }
+
+  /* ===================== GALLERY ===================== */
+  #gallery { background: var(--surface); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    gap: 10px;
+    margin-top: 2.5rem;
+  }
+  .gallery-item {
+    position: relative; overflow: hidden;
+    border-radius: 6px; cursor: pointer;
+    aspect-ratio: 4/3;
+    background: var(--surface2);
+  }
+  .gallery-item:first-child { grid-column: 1 / 3; grid-row: 1 / 3; aspect-ratio: auto; }
+  .gallery-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .gallery-item:hover img { transform: scale(1.07); }
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: rgba(10,10,10,0.55);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity var(--transition);
+  }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-overlay-icon {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: rgba(201,168,76,0.9);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; color: var(--black);
+  }
+  /* Lightbox */
+  #lightbox {
+    display: none; position: fixed; inset: 0; z-index: 9999;
+    background: rgba(0,0,0,0.95);
+    align-items: center; justify-content: center;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img {
+    max-width: 90vw; max-height: 88vh;
+    border-radius: var(--radius);
+    box-shadow: 0 0 80px rgba(201,168,76,0.2);
+  }
+  #lightbox-close {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    width: 42px; height: 42px; border-radius: 50%;
+    background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-size: 1.2rem; cursor: pointer;
+    transition: background var(--transition);
+  }
+  #lightbox-close:hover { background: rgba(201,168,76,0.3); }
+
+  /* ===================== BOOKING ===================== */
+  #booking { background: var(--black); }
+  .booking-wrap {
+    max-width: 680px; margin: 0 auto;
+  }
+  .booking-form {
+    background: var(--surface);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 12px;
+    padding: 2.5rem;
+    margin-top: 2.5rem;
+  }
+  .form-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin-bottom: 1rem;
+  }
+  .form-group {
+    display: flex; flex-direction: column; gap: 0.4rem;
+  }
+  .form-group label {
+    font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: var(--surface2);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: var(--radius);
+    padding: 11px 14px;
+    font-family: inherit; font-size: 0.9rem;
+    color: var(--text);
+    outline: none;
+    transition: border-color var(--transition);
+    appearance: none;
+  }
+  .form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A84C' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--gold); }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(136,136,128,0.5); }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+  .form-note {
+    font-size: 0.78rem; color: var(--text-muted);
+    margin-top: -0.5rem; margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 6px;
+  }
+  #booking-success {
+    display: none;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: var(--radius);
+    padding: 1.2rem 1.6rem;
+    color: var(--gold-light);
+    font-weight: 500;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  /* ===================== SEATING PICKER ===================== */
+  .seating-picker-label {
+    font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 8px;
+    flex-wrap: wrap;
+  }
+  .seating-hint {
+    font-size: 0.72rem; font-weight: 400;
+    color: var(--gold); letter-spacing: 0;
+    text-transform: none;
+  }
+  .seating-groups { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 1rem; }
+  .seating-group-title {
+    font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 0.5rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .seating-group-title::after {
+    content: ''; flex: 1; height: 1px;
+    background: rgba(201,168,76,0.12);
+  }
+  .choi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 8px;
+  }
+  .choi-card { position: relative; }
+  .choi-card input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+  .choi-card label {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 3px;
+    padding: 10px 8px;
+    background: var(--surface2);
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: border-color var(--transition), background var(--transition), transform var(--transition);
+    text-align: center;
+    user-select: none;
+  }
+  .choi-card input:checked + label {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.10);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(201,168,76,0.15);
+  }
+  .choi-card label:hover {
+    border-color: rgba(201,168,76,0.4);
+    background: rgba(201,168,76,0.06);
+  }
+  .choi-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--text); line-height: 1;
+  }
+  .choi-card input:checked + label .choi-name { color: var(--gold); }
+  .choi-cap { font-size: 0.68rem; color: var(--text-muted); font-weight: 500; }
+  .choi-tag {
+    font-size: 0.6rem; font-weight: 600;
+    padding: 2px 6px; border-radius: 20px;
+    margin-top: 1px; white-space: nowrap;
+  }
+  .tag-river { background: rgba(0,160,220,0.15); color: #5BC8E8; }
+  .tag-large { background: rgba(201,168,76,0.15); color: var(--gold); }
+  .tag-special { background: rgba(80,200,120,0.15); color: #6FD49A; }
+  .choi-undecided {
+    margin-top: 0.5rem;
+  }
+  .choi-undecided input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+  .choi-undecided label {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.82rem; color: var(--text-muted);
+    cursor: pointer;
+    padding: 8px 14px;
+    border: 1px dashed rgba(201,168,76,0.2);
+    border-radius: var(--radius);
+    transition: border-color var(--transition), color var(--transition);
+    user-select: none;
+  }
+  .choi-undecided input:checked + label,
+  .choi-undecided label:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ===================== MAP ===================== */
+  #location { background: var(--surface); }
+  .map-wrap {
+    border-radius: 12px; overflow: hidden;
+    border: 1px solid rgba(201,168,76,0.15);
+    margin-top: 2.5rem;
+    position: relative;
+  }
+  .map-wrap iframe {
+    width: 100%; height: 380px;
+    border: none; display: block;
+    filter: grayscale(40%) contrast(1.05);
+  }
+  .map-card {
+    position: absolute; top: 1.5rem; left: 1.5rem;
+    background: rgba(10,10,10,0.92);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 10px;
+    padding: 1.2rem 1.5rem;
+    max-width: 260px;
+    backdrop-filter: blur(8px);
+  }
+  .map-card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700;
+    color: var(--gold); margin-bottom: 0.4rem;
+  }
+  .map-card-addr { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.8rem; }
+  .btn-direction {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px; border-radius: 6px;
+    background: var(--gold); color: var(--black);
+    font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.5px; text-transform: uppercase;
+    transition: var(--transition);
+  }
+  .btn-direction:hover { background: var(--gold-light); }
+
+  /* ===================== CONTACT ===================== */
+  #contact { background: var(--black); }
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 2.5rem;
+  }
+  .contact-card {
+    background: var(--surface);
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: border-color var(--transition), transform var(--transition);
+  }
+  .contact-card:hover {
+    border-color: rgba(201,168,76,0.4);
+    transform: translateY(-4px);
+  }
+  .contact-icon {
+    font-size: 2rem; margin-bottom: 0.8rem;
+  }
+  .contact-label {
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 0.4rem;
+  }
+  .contact-value {
+    font-size: 1rem; font-weight: 600;
+    color: var(--gold);
+  }
+
+  /* ===================== FOOTER ===================== */
+  footer {
+    background: var(--surface);
+    border-top: 1px solid rgba(201,168,76,0.12);
+    padding: 2.5rem 5% 1.5rem;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 900;
+    color: var(--gold); letter-spacing: 3px;
+    margin-bottom: 0.4rem;
+  }
+  .footer-slogan {
+    font-size: 0.8rem; color: var(--text-muted);
+    letter-spacing: 2px; margin-bottom: 1.5rem;
+  }
+  .footer-divider {
+    border: none; border-top: 1px solid rgba(201,168,76,0.1);
+    margin: 1.5rem 0;
+  }
+  .footer-copy { font-size: 0.75rem; color: rgba(136,136,128,0.5); }
+
+  /* ===================== FLOATING BUTTONS ===================== */
+  .floating-actions {
+    position: fixed; right: 1.2rem; bottom: 1.5rem;
+    display: flex; flex-direction: column; gap: 0.7rem;
+    z-index: 800;
+  }
+  .fab {
+    width: 50px; height: 50px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: transform var(--transition), box-shadow var(--transition);
+    font-size: 1.3rem; text-decoration: none;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.4);
+  }
+  .fab:hover { transform: scale(1.12); }
+  .fab-phone { background: linear-gradient(135deg, #C9A84C, #E8C96B); color: var(--black); }
+  .fab-zalo { background: #0068FF; color: #fff; }
+  .fab-messenger { background: linear-gradient(135deg, #0084FF, #44BEC7); color: #fff; }
+  .fab-label {
+    position: absolute; right: 62px;
+    background: rgba(10,10,10,0.9);
+    color: var(--text); font-size: 0.72rem;
+    padding: 4px 10px; border-radius: 4px;
+    white-space: nowrap; pointer-events: none;
+    opacity: 0; transition: opacity 0.2s;
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+  .fab:hover .fab-label { opacity: 1; }
+  .fab-wrap { position: relative; display: flex; align-items: center; }
+
+  /* ===================== VIDEO ===================== */
+  #video { background: var(--black); }
+  .video-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .video-main { grid-column: 1 / 3; }
+  .video-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface2);
+    border: 1px solid rgba(201,168,76,0.12);
+    cursor: pointer;
+    transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+  }
+  .video-card:hover {
+    border-color: rgba(201,168,76,0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+  }
+  /* Embed iframe mode */
+  .video-card iframe {
+    width: 100%; display: block; border: none;
+    aspect-ratio: 16/9;
+  }
+  /* Thumbnail + play-button overlay mode */
+  .video-thumb {
+    position: relative; display: block;
+  }
+  .video-thumb img {
+    width: 100%; aspect-ratio: 16/9;
+    object-fit: cover; display: block;
+    transition: transform 0.5s ease;
+  }
+  .video-card:hover .video-thumb img { transform: scale(1.04); }
+  .video-play-btn {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(10,10,10,0.38);
+    transition: background var(--transition);
+  }
+  .video-card:hover .video-play-btn { background: rgba(10,10,10,0.55); }
+  .video-play-circle {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: rgba(201,168,76,0.92);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 24px rgba(201,168,76,0.4);
+    transition: transform var(--transition), box-shadow var(--transition);
+  }
+  .video-card:hover .video-play-circle {
+    transform: scale(1.1);
+    box-shadow: 0 8px 36px rgba(201,168,76,0.6);
+  }
+  .video-play-circle svg { margin-left: 4px; }
+  .video-meta {
+    padding: 1rem 1.2rem 1.2rem;
+  }
+  .video-tag {
+    display: inline-block;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.4rem;
+  }
+  .video-title {
+    font-size: 0.95rem; font-weight: 600;
+    color: var(--text); line-height: 1.4;
+  }
+  .video-main .video-title { font-size: 1.1rem; }
+  /* Modal video player */
+  #video-modal {
+    display: none; position: fixed; inset: 0; z-index: 9999;
+    background: rgba(0,0,0,0.94);
+    align-items: center; justify-content: center;
+    padding: 1rem;
+  }
+  #video-modal.open { display: flex; }
+  .video-modal-inner {
+    position: relative;
+    width: 100%; max-width: 900px;
+  }
+  .video-modal-inner iframe {
+    width: 100%; aspect-ratio: 16/9;
+    border: none; border-radius: 10px;
+    box-shadow: 0 0 80px rgba(201,168,76,0.15);
+  }
+  #video-modal-close {
+    position: absolute; top: -44px; right: 0;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.35);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-size: 1rem; cursor: pointer;
+    transition: background var(--transition);
+  }
+  #video-modal-close:hover { background: rgba(201,168,76,0.35); }
+  @media (max-width: 700px) {
+    .video-grid { grid-template-columns: 1fr; }
+    .video-main { grid-column: 1; }
+    .video-play-circle { width: 50px; height: 50px; }
+  }
+
+  /* ===================== ZALO BOOKING BADGE ===================== */
+  .zalo-badge {
+    display: flex; align-items: center; gap: 10px;
+    background: rgba(0,104,255,0.08);
+    border: 1px solid rgba(0,104,255,0.25);
+    border-radius: var(--radius);
+    padding: 10px 16px;
+    margin-bottom: 1.5rem;
+    font-size: 0.82rem; color: #7EB8FF;
+  }
+  .zalo-badge strong { color: #A8D4FF; }
+
+  /* ===================== SCROLL REVEAL ===================== */
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ===================== RESPONSIVE ===================== */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-img-wrap { max-width: 480px; margin: 0 auto; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-item:first-child { grid-column: 1; grid-row: 1; }
+    .contact-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 70px 5%; }
+    .form-row { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    .gallery-item:first-child { grid-column: 1 / 3; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .map-card { position: static; border-radius: 0 0 10px 10px; max-width: 100%; border-top: 0; border-left: 0; border-right: 0; }
+    .map-wrap { border-radius: 10px; }
+    .booking-form { padding: 1.5rem; }
+    .hero-meta { gap: 1rem; }
+    .hero-dot { display: none; }
+    .fab { width: 44px; height: 44px; font-size: 1.1rem; }
+  }
+  @media (max-width: 380px) {
+    .hero-cta { flex-direction: column; align-items: center; }
+    .menu-tabs { gap: 0.4rem; }
+    .menu-tab { font-size: 0.72rem; padding: 7px 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav id="navbar">
+  <div class="nav-logo">MÂY<span> FOOD</span></div>
+  <ul class="nav-links">
+    <li><a href="#hero">Trang Chủ</a></li>
+    <li><a href="#about">Giới Thiệu</a></li>
+    <li><a href="#menu">Thực Đơn</a></li>
+    <li><a href="#gallery">Hình Ảnh</a></li>
+    <li><a href="#video">Video</a></li>
+    <li><a href="#booking">Đặt Bàn</a></li>
+    <li><a href="#location">Vị Trí</a></li>
+    <li><a href="#contact">Liên Hệ</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#hero" class="mobile-link">🏠 Trang Chủ</a></li>
+    <li><a href="#about" class="mobile-link">ℹ️ Giới Thiệu</a></li>
+    <li><a href="#menu" class="mobile-link">🍽️ Thực Đơn</a></li>
+    <li><a href="#gallery" class="mobile-link">📷 Hình Ảnh</a></li>
+    <li><a href="#video" class="mobile-link">🎬 Video</a></li>
+    <li><a href="#booking" class="mobile-link">📅 Đặt Bàn</a></li>
+    <li><a href="#location" class="mobile-link">📍 Vị Trí</a></li>
+    <li><a href="#contact" class="mobile-link">📞 Liên Hệ</a></li>
+  </ul>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">⭐ 231 Phạm Ngũ Lão · Bảo An · Khánh Hòa</div>
+    <h1 class="hero-title">MÂY<br><span class="gold">FOOD</span></h1>
+    <p class="hero-sub">Nhậu Chill · Mồi Ngon · Giá Hợp Lý</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">🕓 Mở cửa <strong>09:00 – 22:30</strong></div>
+      <div class="hero-dot"></div>
+      <div class="hero-meta-item">📞 <strong>09xxxxxxxx</strong></div>
+      <div class="hero-dot"></div>
+      <div class="hero-meta-item">📍 231 Phạm Ngũ Lão, Bảo An, Khánh Hòa</div>
+    </div>
+    <div class="hero-cta">
+      <a href="#booking" class="btn btn-primary">📅 Đặt Bàn Ngay</a>
+      <a href="tel:09xxxxxxxx" class="btn btn-outline">📞 Gọi Điện</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Cuộn xuống</span>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80" alt="Không gian MÂY FOOD">
+      </div>
+      <div>
+        <p class="section-eyebrow reveal">Về chúng tôi</p>
+        <h2 class="section-title reveal reveal-delay-1">Không Gian<br><em>Thư Giãn</em> Tuyệt Vời</h2>
+        <div class="gold-line reveal reveal-delay-1"></div>
+        <p class="reveal reveal-delay-2" style="color:var(--text-muted);line-height:1.8;margin-bottom:1rem;">
+          <strong style="color:var(--text)">MÂY FOOD</strong> là quán nhậu chuyên phục vụ các món nướng, hải sản, lẩu và đồ nhậu với không gian thoải mái, phù hợp họp mặt bạn bè và gia đình.
+        </p>
+        <p class="reveal reveal-delay-2" style="color:var(--text-muted);line-height:1.8;margin-bottom:1.8rem;">
+          Tọa lạc tại <strong style="color:var(--text)">231 Phạm Ngũ Lão, Bảo An, Khánh Hòa</strong>, chúng tôi mang đến trải nghiệm ẩm thực đậm chất miền Trung với nguyên liệu tươi ngon, chế biến tỉ mỉ và giá cả phải chăng.
+        </p>
+        <div class="about-stats reveal reveal-delay-3">
+          <div class="about-stat">
+            <div class="about-stat-num">200+</div>
+            <div class="about-stat-label">Khách mỗi đêm</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">50+</div>
+            <div class="about-stat-label">Món ăn phong phú</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">09:00</div>
+            <div class="about-stat-label">Mở cửa hàng ngày</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">100%</div>
+            <div class="about-stat-label">Nguyên liệu tươi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MENU ===================== -->
+<section id="menu">
+  <div class="container">
+    <p class="section-eyebrow reveal">Khám phá</p>
+    <h2 class="section-title reveal reveal-delay-1">Thực Đơn <em>Đặc Sắc</em></h2>
+    <div class="gold-line reveal reveal-delay-1"></div>
+
+    <div class="menu-tabs">
+      <button class="menu-tab active" data-tab="nuong">🥩 Món Nướng</button>
+      <button class="menu-tab" data-tab="haisang">🦐 Hải Sản</button>
+      <button class="menu-tab" data-tab="lau">🍲 Lẩu</button>
+      <button class="menu-tab" data-tab="nhau">🍻 Đồ Nhậu</button>
+      <button class="menu-tab" data-tab="nuoc">🥤 Nước Uống</button>
+    </div>
+
+    <div class="menu-panel active menu-grid" id="tab-nuong">
+      <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Ba Chỉ Nướng Mọi</div><div class="menu-item-note">Thịt heo tươi, ướp gia vị đặc trưng</div></div><div class="menu-item-price">89.000đ</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sườn Non Nướng Mật Ong</div><div class="menu-item-note">Sườn non mềm, vị ngọt mật ong</div></div><div class="menu-item-price">119.000đ</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Bò Nướng Tảng</div><div class="menu-item-note">Thịt bò tươi, nướng than hoa</div></div><div class="menu-item-price">149.000đ</div></div>
+    </div>
+
+    <div class="menu-panel menu-grid" id="tab-haisang">
+      <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Tôm Nướng Muối Ớt</div><div class="menu-item-note">Tôm biển tươi, cay thơm đặc biệt</div></div><div class="menu-item-price">139.000đ</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Mực Nướng Sa Tế</div><div class="menu-item-note">Mực tươi, sa tế thơm nồng</div></div><div class="menu-item-price">129.000đ</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Hàu Nướng Phô Mai</div><div class="menu-item-note">Hàu biển tươi, phô mai béo ngậy</div></div><div class="menu-item-price">25.000đ/con</div></div>
+    </div>
+
+    <div class="menu-panel menu-grid" id="tab-lau">
+      <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Lẩu Hải Sản</div><div class="menu-item-note">Tôm, mực, cua, ngao tươi sống</div></div><div class="menu-item-price">249.000đ</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Lẩu Thái Chua Cay</div><div class="menu-item-note">Nước dùng chua cay đặc trưng Thái</div></div><div class="menu-item-price">229.000đ</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Lẩu Bò Nhúng Giấm</div><div class="menu-item-note">Bò tươi, dấm me chua thanh</div></div><div class="menu-item-price">259.000đ</div></div>
+    </div>
+
+    <div class="menu-panel menu-grid" id="tab-nhau">
+      <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Khô Mực Nướng</div><div class="menu-item-note">Khô mực dày, nướng vàng thơm</div></div><div class="menu-item-price">99.000đ</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Chân Gà Sả Tắc</div><div class="menu-item-note">Chân gà mềm, vị sả tắc đậm đà</div></div><div class="menu-item-price">79.000đ</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Đậu Phộng Rang Muối</div><div class="menu-item-note">Giòn tan, bùi bùi, nhậu là ghiền</div></div><div class="menu-item-price">29.000đ</div></div>
+    </div>
+
+    <div class="menu-panel menu-grid" id="tab-nuoc">
+      <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Pepsi</div><div class="menu-item-note">Lon 330ml</div></div><div class="menu-item-price">15.000đ</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">7Up</div><div class="menu-item-note">Lon 330ml</div></div><div class="menu-item-price">15.000đ</div></div>
+      <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Nước Suối</div><div class="menu-item-note">Chai 500ml</div></div><div class="menu-item-price">10.000đ</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GALLERY ===================== -->
+<section id="gallery">
+  <div class="container">
+    <p class="section-eyebrow reveal">Hình ảnh</p>
+    <h2 class="section-title reveal reveal-delay-1">Không Gian &amp; <em>Món Ngon</em></h2>
+    <div class="gold-line reveal reveal-delay-1"></div>
+
+    <div class="gallery-grid reveal reveal-delay-2">
+      <div class="gallery-item" data-src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&q=80">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80" alt="Không gian quán">
+        <div class="gallery-overlay"><div class="gallery-overlay-icon">🔍</div></div>
+      </div>
+      <div class="gallery-item" data-src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80">
+        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt="Món nướng">
+        <div class="gallery-overlay"><div class="gallery-overlay-icon">🔍</div></div>
+      </div>
+      <div class="gallery-item" data-src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80">
+        <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&q=80" alt="Hải sản">
+        <div class="gallery-overlay"><div class="gallery-overlay-icon">🔍</div></div>
+      </div>
+      <div class="gallery-item" data-src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800&q=80">
+        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&q=80" alt="Lẩu">
+        <div class="gallery-overlay"><div class="gallery-overlay-icon">🔍</div></div>
+      </div>
+      <div class="gallery-item" data-src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="Không gian bàn ăn">
+        <div class="gallery-overlay"><div class="gallery-overlay-icon">🔍</div></div>
+      </div>
+      <div class="gallery-item" data-src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=800&q=80">
+        <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=80" alt="Món ăn đặc sắc">
+        <div class="gallery-overlay"><div class="gallery-overlay-icon">🔍</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox">
+  <button id="lightbox-close">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<!-- ===================== VIDEO ===================== -->
+<section id="video">
+  <div class="container">
+    <p class="section-eyebrow reveal">Xem thêm</p>
+    <h2 class="section-title reveal reveal-delay-1">Video <em>Quán</em></h2>
+    <div class="gold-line reveal reveal-delay-1"></div>
+
+    <div class="video-grid reveal reveal-delay-2">
+
+      <!-- Video chính – nhúng YouTube (thay VIDEO_ID bằng ID thật) -->
+      <div class="video-card video-main">
+        <iframe
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1"
+          title="MÂY FOOD – Không gian quán"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+        <div class="video-meta">
+          <span class="video-tag">🎬 Giới thiệu quán</span>
+          <div class="video-title">MÂY FOOD – Không Gian Chill & Mồi Ngon Bảo An, Khánh Hòa</div>
+        </div>
+      </div>
+
+      <!-- Video phụ 1 – dạng thumbnail, click mở modal -->
+      <div class="video-card" data-yt="dQw4w9WgXcQ" onclick="openVideoModal(this)">
+        <div class="video-thumb">
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=700&q=80" alt="Món nướng đặc sắc">
+          <div class="video-play-btn">
+            <div class="video-play-circle">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <polygon points="6,3 20,12 6,21" fill="#0A0A0A"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="video-meta">
+          <span class="video-tag">🥩 Món nướng</span>
+          <div class="video-title">Bí quyết ướp thịt nướng chuẩn vị MÂY FOOD</div>
+        </div>
+      </div>
+
+      <!-- Video phụ 2 -->
+      <div class="video-card" data-yt="dQw4w9WgXcQ" onclick="openVideoModal(this)">
+        <div class="video-thumb">
+          <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=700&q=80" alt="Hải sản tươi sống">
+          <div class="video-play-btn">
+            <div class="video-play-circle">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <polygon points="6,3 20,12 6,21" fill="#0A0A0A"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="video-meta">
+          <span class="video-tag">🦐 Hải sản</span>
+          <div class="video-title">Hải sản tươi sống ngay tại bàn – Tôm, Mực, Hàu</div>
+        </div>
+      </div>
+
+</section>
+
+<!-- Video Modal -->
+<div id="video-modal">
+  <div class="video-modal-inner">
+    <button id="video-modal-close" onclick="closeVideoModal()">✕</button>
+    <iframe id="video-modal-iframe" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- ===================== BOOKING ===================== -->
+<section id="booking">
+  <div class="container">
+    <div class="booking-wrap">
+      <p class="section-eyebrow reveal" style="text-align:center">Liên hệ trước để có chỗ đẹp nhất</p>
+      <h2 class="section-title reveal reveal-delay-1" style="text-align:center">Đặt Bàn <em>Ngay</em></h2>
+      <div class="gold-line center reveal reveal-delay-1"></div>
+
+      <div class="booking-form reveal reveal-delay-2">
+        <div class="zalo-badge">
+          <svg width="20" height="20" viewBox="0 0 40 40"><rect width="40" height="40" rx="20" fill="#0068FF"/><text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" font-size="16" font-weight="bold" fill="white" font-family="Arial">Z</text></svg>
+          <span>Thông tin sẽ được gửi tự động qua <strong>Zalo</strong> của quán — bạn chỉ cần bấm <strong>Gửi</strong> là xong!</span>
+        </div>
+        <!-- CHỌN CHÒI -->
+        <div style="margin-bottom:1.5rem;">
+          <div class="seating-picker-label">
+            Bạn muốn ngồi ở chòi nào?
+            <span class="seating-hint">🌊 Chòi gần sông mát và hay hết chỗ sớm</span>
+          </div>
+          <div class="seating-groups">
+
+            <!-- Bàn nhỏ 2-4 người -->
+            <div>
+              <div class="seating-group-title">Bàn nhỏ · 2 – 4 người</div>
+              <div class="choi-grid">
+                <div class="choi-card"><input type="radio" name="f-choi" id="fc1" value="C1"><label for="fc1"><span class="choi-name">C1</span><span class="choi-cap">2–4 người</span><span class="choi-tag tag-river">🌊 Gần sông</span></label></div>
+                <div class="choi-card"><input type="radio" name="f-choi" id="fc2" value="C2"><label for="fc2"><span class="choi-name">C2</span><span class="choi-cap">2–4 người</span><span class="choi-tag tag-river">🌊 Gần sông</span></label></div>
+                <div class="choi-card"><input type="radio" name="f-choi" id="fc3" value="C3"><label for="fc3"><span class="choi-name">C3</span><span class="choi-cap">2–4 người</span></label></div>
+                <div class="choi-card"><input type="radio" name="f-choi" id="fc4" value="C4"><label for="fc4"><span class="choi-name">C4</span><span class="choi-cap">2–4 người</span></label></div>
+                <div class="choi-card"><input type="radio" name="f-choi" id="fc5" value="C5"><label for="fc5"><span class="choi-name">C5</span><span class="choi-cap">2–4 người</span></label></div>
+                <div class="choi-card"><input type="radio" name="f-choi" id="fc7" value="C7"><label for="fc7"><span class="choi-name">C7</span><span class="choi-cap">2–4 người</span></label></div>
+                <div class="choi-card"><input type="radio" name="f-choi" id="fc8" value="C8"><label for="fc8"><span class="choi-name">C8</span><span class="choi-cap">2–4 người</span><span class="choi-tag tag-river">🌊 Gần sông</span></label></div>
+                <div class="choi-card"><input type="radio" name="f-choi" id="fc9" value="C9"><label for="fc9"><span class="choi-name">C9</span><span class="choi-cap">2–4 người</span><span class="choi-tag tag-river">🌊 Gần sông</span></label></div>
+              </div>
+            </div>
+
+            <!-- Câu cá & nhóm vừa -->
+            <div>
+              <div class="seating-group-title">Chòi câu cá & nhóm vừa · 4 – 12 người</div>
+              <div class="choi-grid">
+                <div class="choi-card"><input type="radio" name="f-choi" id="fccf" value="Chòi câu cá"><label for="fccf"><span class="choi-name">🎣</span><span class="choi-name" style="font-size:0.82rem;">Câu Cá</span><span class="choi-cap">4–8 người</span><span class="choi-tag tag-river">🌊 Gần sông</span></label></div>
+                <div class="choi-card"><input type="radio" name="f-choi" id="fc6" value="C6"><label for="fc6"><span class="choi-name">C6</span><span class="choi-cap">tối đa 12 người</span><span class="choi-tag tag-large">★ Bàn lớn</span></label></div>
+              </div>
+            </div>
+
+            <!-- Nhóm lớn & đặc biệt -->
+            <div>
+              <div class="seating-group-title">Nhóm lớn & đặc biệt</div>
+              <div class="choi-grid">
+                <div class="choi-card"><input type="radio" name="f-choi" id="fc10" value="C10"><label for="fc10"><span class="choi-name">C10</span><span class="choi-cap">35+ người</span><span class="choi-tag tag-large">★ Tiệc lớn</span></label></div>
+                <div class="choi-card"><input type="radio" name="f-choi" id="fmetay" value="Chòi me tây"><label for="fmetay"><span class="choi-name">🌳</span><span class="choi-name" style="font-size:0.82rem;">Me Tây</span><span class="choi-cap">8–10 người</span><span class="choi-tag tag-special">✦ Đặc biệt</span></label></div>
+                <div class="choi-card"><input type="radio" name="f-choi" id="fcamtrai" value="Chòi cắm trại"><label for="fcamtrai"><span class="choi-name">⛺</span><span class="choi-name" style="font-size:0.82rem;">Cắm Trại</span><span class="choi-cap">8–10 người</span><span class="choi-tag tag-special">✦ Đặc biệt</span></label></div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Chưa quyết định -->
+          <div class="choi-undecided" style="position:relative;">
+            <input type="radio" name="f-choi" id="fundecided" value="Chưa quyết định">
+            <label for="fundecided">Chưa quyết định – nhờ quán tư vấn khi xác nhận</label>
+          </div>
+        </div>
+        <!-- /CHỌN CHÒI -->
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Họ và tên *</label>
+            <input type="text" id="f-name" placeholder="Nguyễn Văn A">
+          </div>
+          <div class="form-group">
+            <label>Số điện thoại *</label>
+            <input type="tel" id="f-phone" placeholder="09xxxxxxxx">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Số lượng khách</label>
+            <select id="f-guests">
+              <option value="">Chọn số khách</option>
+              <option>1 – 2 người</option>
+              <option>3 – 5 người</option>
+              <option>6 – 10 người</option>
+              <option>11 – 20 người</option>
+              <option>Trên 20 người</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Ngày đặt *</label>
+            <input type="date" id="f-date">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Giờ đặt</label>
+            <select id="f-time">
+              <option value="">Chọn giờ</option>
+              <option>11:00</option><option>11:30</option>
+              <option>12:00</option><option>12:30</option>
+              <option>13:00</option><option>13:30</option>
+              <option>14:00</option><option>14:30</option>
+              <option>15:00</option><option>15:30</option>
+              <option>16:00</option><option>16:30</option>
+              <option>17:00</option><option>17:30</option>
+              <option>18:00</option><option>18:30</option>
+              <option>19:00</option><option>19:30</option>
+            </select>
+          </div>
+          <div class="form-group" style="justify-content:flex-end;padding-top:0.2rem;">
+            <div class="form-note">⏰ Mở cửa 16:00 – 22:30 hàng ngày</div>
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:1.5rem;">
+          <label>Ghi chú thêm</label>
+          <textarea id="f-note" placeholder="Yêu cầu đặc biệt, dị ứng thực phẩm, bàn đặc biệt..."></textarea>
+        </div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:15px;background:linear-gradient(135deg,#0068FF,#2E90FF);color:#fff;box-shadow:0 4px 24px rgba(0,104,255,0.35);" onclick="submitBookingZalo(event)">
+          💬 Gửi Đặt Bàn Qua Zalo
+        </button>
+        <div id="booking-success">
+          🎉 Zalo đã mở! Vui lòng kiểm tra tin nhắn và nhấn <strong>Gửi</strong> để hoàn tất đặt bàn. Chúng tôi sẽ liên hệ xác nhận sớm nhất. Cảm ơn bạn đã chọn MÂY FOOD!
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LOCATION ===================== -->
+<section id="location">
+  <div class="container">
+    <p class="section-eyebrow reveal">Tìm chúng tôi</p>
+    <h2 class="section-title reveal reveal-delay-1">Vị Trí <em>Quán</em></h2>
+    <div class="gold-line reveal reveal-delay-1"></div>
+
+    <div class="map-wrap reveal reveal-delay-2">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30855.52!2d109.1897!3d12.2388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3170677c08e2c6f7%3A0x6d2cde4d0b0f5f5a!2sNha%20Trang%2C%20Kh%C3%A1nh%20H%C3%B2a!5e0!3m2!1svi!2svn!4v1700000000000"
+        allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+      <div class="map-card">
+        <div class="map-card-name">MÂY FOOD</div>
+        <div class="map-card-addr">📍 231 Phạm Ngũ Lão, Bảo An, Khánh Hòa<br>⏰ 16:00 – 22:30 hàng ngày</div>
+        <a href="https://maps.google.com/?q=231+Pham+Ngu+Lao+Bao+An+Khanh+Hoa" target="_blank" class="btn-direction">
+          🧭 Chỉ Đường
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact">
+  <div class="container">
+    <p class="section-eyebrow reveal" style="text-align:center">Kết nối với chúng tôi</p>
+    <h2 class="section-title reveal reveal-delay-1" style="text-align:center">Liên <em>Hệ</em></h2>
+    <div class="gold-line center reveal reveal-delay-1"></div>
+
+    <div class="contact-grid">
+      <div class="contact-card reveal">
+        <div class="contact-icon">📞</div>
+        <div class="contact-label">Hotline</div>
+        <a href="tel:09xxxxxxxx" class="contact-value">09xxxxxxxx</a>
+      </div>
+      <div class="contact-card reveal reveal-delay-1">
+        <div class="contact-icon">💬</div>
+        <div class="contact-label">Zalo</div>
+        <a href="https://zalo.me/09xxxxxxxx" target="_blank" class="contact-value">09xxxxxxxx</a>
+      </div>
+      <div class="contact-card reveal reveal-delay-2">
+        <div class="contact-icon">📘</div>
+        <div class="contact-label">Facebook</div>
+        <a href="https://facebook.com/mayfood" target="_blank" class="contact-value">Mây Food</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="footer-logo">MÂY FOOD</div>
+  <div class="footer-slogan">Nhậu Chill · Mồi Ngon · Giá Hợp Lý</div>
+  <hr class="footer-divider">
+  <div class="footer-copy">© 2025 MÂY FOOD – 231 Phạm Ngũ Lão, Bảo An, Khánh Hòa. All rights reserved.</div>
+</footer>
+
+<!-- ===================== FLOATING ACTIONS ===================== -->
+<div class="floating-actions">
+  <div class="fab-wrap">
+    <span class="fab-label">Gọi điện</span>
+    <a href="tel:09xxxxxxxx" class="fab fab-phone" title="Gọi điện">📞</a>
+  </div>
+  <div class="fab-wrap">
+    <span class="fab-label">Zalo</span>
+    <a href="https://zalo.me/09xxxxxxxx" target="_blank" class="fab fab-zalo" title="Zalo">
+      <svg width="22" height="22" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="20" fill="#0068FF"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-size="14" font-weight="bold" fill="white" font-family="Arial">Z</text></svg>
+    </a>
+  </div>
+  <div class="fab-wrap">
+    <span class="fab-label">Messenger</span>
+    <a href="https://m.me/mayfood" target="_blank" class="fab fab-messenger" title="Messenger">💬</a>
+  </div>
+</div>
+
+<!-- ===================== SCRIPT ===================== -->
+<script>
+  // NAV SCROLL
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // HAMBURGER
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  document.querySelectorAll('.mobile-link').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // MENU TABS
+  document.querySelectorAll('.menu-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('tab-' + target).classList.add('active');
+    });
+  });
+
+  // GALLERY LIGHTBOX
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.addEventListener('click', () => {
+      lightboxImg.src = item.dataset.src;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // =====================================================
+  // BOOKING – GỬI QUA ZALO
+  // =====================================================
+  //
+  // ⚙️  CHỈ CẦN SỬA 1 DÒNG DUY NHẤT:
+  //     Thay số điện thoại Zalo của quán vào biến bên dưới.
+  //     Ví dụ: const ZALO_PHONE = '0912345678';
+  //
+  const ZALO_PHONE = '0392631243'; // ← ✏️ THAY SĐT ZALO CỦA QUÁN VÀO ĐÂY
+
+    function submitBookingZalo(event) {
+    // BƯỚC 1: Ngăn trang tải lại (preventDefault)
+    event.preventDefault();
+
+    // BƯỚC 2: Thu thập dữ liệu từ các trường input (theo id)
+    const name   = document.getElementById('f-name').value.trim();
+    const phone  = document.getElementById('f-phone').value.trim();
+    const guests = document.getElementById('f-guests').value;
+    const date   = document.getElementById('f-date').value;
+    const time   = document.getElementById('f-time').value;
+    const note   = document.getElementById('f-note').value.trim();
+    const choiEl = document.querySelector('input[name="f-choi"]:checked');
+    const choi   = choiEl ? choiEl.value : 'Chưa chọn';
+
+    // BƯỚC 3: Validate – bắt buộc nhập 3 trường quan trọng
+    if (!name) {
+      alert('⚠️ Vui lòng nhập họ và tên!');
+      document.getElementById('f-name').focus();
+      return;
+    }
+    if (!phone) {
+      alert('⚠️ Vui lòng nhập số điện thoại!');
+      document.getElementById('f-phone').focus();
+      return;
+    }
+    if (!date) {
+      alert('⚠️ Vui lòng chọn ngày đặt bàn!');
+      document.getElementById('f-date').focus();
+      return;
+    }
+
+    // BƯỚC 4: Định dạng ngày từ YYYY-MM-DD → DD/MM/YYYY cho dễ đọc
+    const [y, m, d] = date.split('-');
+    const dateFormatted = `${d}/${m}/${y}`;
+
+    // BƯỚC 5: Soạn nội dung tin nhắn đẹp mắt, rõ ràng
+    const message =
+`✨ ĐẶT BÀN MỚI - MÂY FOOD ✨
+━━━━━━━━━━━━━━━━━━━━━━━━━
+👤 Họ tên    : ${name}
+📞 Điện thoại: ${phone}
+👥 Số khách  : ${guests  || 'Chưa chọn'}
+🛖 Chòi muốn : ${choi}
+📅 Ngày đặt  : ${dateFormatted}
+⏰ Giờ đến   : ${time    || 'Chưa chọn'}
+📝 Ghi chú   : ${note    || 'Không có'}
+━━━━━━━━━━━━━━━━━━━━━━━━━
+📍 231 Phạm Ngũ Lão, Bảo An, Khánh Hòa
+🕓 Mở cửa: 09:00 – 22:30 hàng ngày`;
+
+    // =====================================================
+    // TÍNH NĂNG THÊM MỚI: TỰ ĐỘNG SAO CHÉP VÀO CLIPBOARD
+    // =====================================================
+    if (navigator.clipboard && window.isSecureContext) {
+      // Cách hiện đại cho các trang có HTTPS công nghệ cao
+      navigator.clipboard.writeText(message).catch(err => {
+        console.error('Lỗi sao chép tự động: ', err);
+      });
+    } else {
+      // Cách dự phòng (Fallback) chạy được trên mọi trình duyệt/HTTP thường
+      const textArea = document.createElement("textarea");
+      textArea.value = message;
+      textArea.style.position = "fixed"; // Tránh cuộn trang nhầm
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+      } catch (err) {
+        console.error('Không thể sao chép bằng execCommand', err);
+      }
+      document.body.removeChild(textArea);
+    }
+
+    // BƯỚC 6: Mã hóa tin nhắn để dự phòng điền sẵn và tạo link Zalo
+    const encoded  = encodeURIComponent(message);
+    const zaloUrl  = `https://zalo.me/${ZALO_PHONE}?text=${encoded}`;
+
+    // BƯỚC 7: Mở Zalo trên tab mới
+    window.open(zaloUrl, '_blank');
+
+    // BƯỚC 8: Cập nhật lại nội dung thông báo thành công cho khớp với tính năng copy
+    const successBox = document.getElementById('booking-success');
+    successBox.innerHTML = `🎉 Đã sao chép thông tin đặt bàn & mở Zalo!<br>Nếu ô chat trống, bạn chỉ cần <strong>Nhấn giữ ô nhập liệu và chọn Dán (Paste)</strong> rồi bấm <strong>Gửi</strong> là hoàn tất.`;
+    successBox.style.display = 'block';
+    successBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    // Reset Form
+    ['f-name','f-phone','f-guests','f-date','f-time','f-note'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el.tagName === 'SELECT') el.selectedIndex = 0;
+      else el.value = '';
+    });
+
+    // Bỏ chọn các nút Chòi sau khi gửi thành công
+    document.querySelectorAll('input[name="f-choi"]').forEach(radio => radio.checked = false);
+
+    setTimeout(() => { successBox.style.display = 'none'; }, 12000);
+  }
+
+
+  // =====================================================
+  // VIDEO MODAL
+  // =====================================================
+  function openVideoModal(card) {
+    const ytId = card.dataset.yt;
+    if (!ytId) return;
+    document.getElementById('video-modal-iframe').src =
+      `https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0`;
+    document.getElementById('video-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeVideoModal() {
+    document.getElementById('video-modal-iframe').src = '';
+    document.getElementById('video-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('video-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeVideoModal();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeVideoModal();
+  });
+
+  // SCROLL REVEAL
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // DATE MIN
+  const dateInput = document.getElementById('f-date');
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.min = today;
+</script>
+</body>
+</html>
