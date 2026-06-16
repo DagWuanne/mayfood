@@ -588,4 +588,1172 @@
     transition: border-color var(--transition);
     appearance: none;
   }
-  .form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A84C' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: r
+  .form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A84C' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--gold); }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(136,136,128,0.5); }
+  .form-group textarea { resize: vertical; min-height: 90px; }
+  .form-note {
+    font-size: 0.78rem; color: var(--text-muted);
+    margin-top: -0.5rem; margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 6px;
+  }
+  #booking-success {
+    display: none;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: var(--radius);
+    padding: 1.2rem 1.6rem;
+    color: var(--gold-light);
+    font-weight: 500;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  /* ===================== SEATING PICKER ===================== */
+  .seating-picker-label {
+    font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 8px;
+    flex-wrap: wrap;
+  }
+  .seating-hint {
+    font-size: 0.72rem; font-weight: 400;
+    color: var(--gold); letter-spacing: 0;
+    text-transform: none;
+  }
+  .seating-groups { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 1rem; }
+  .seating-group-title {
+    font-size: 0.68rem; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 0.5rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .seating-group-title::after {
+    content: ''; flex: 1; height: 1px;
+    background: rgba(201,168,76,0.12);
+  }
+  .choi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 8px;
+  }
+  .choi-card { position: relative; }
+  .choi-card input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+  .choi-card label {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 3px;
+    padding: 10px 8px;
+    background: var(--surface2);
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: border-color var(--transition), background var(--transition), transform var(--transition);
+    text-align: center;
+    user-select: none;
+  }
+  .choi-card input:checked + label {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.10);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(201,168,76,0.15);
+  }
+  .choi-card label:hover {
+    border-color: rgba(201,168,76,0.4);
+    background: rgba(201,168,76,0.06);
+  }
+  .choi-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--text); line-height: 1;
+  }
+  .choi-card input:checked + label .choi-name { color: var(--gold); }
+  .choi-cap { font-size: 0.68rem; color: var(--text-muted); font-weight: 500; }
+  .choi-tag {
+    font-size: 0.6rem; font-weight: 600;
+    padding: 2px 6px; border-radius: 20px;
+    margin-top: 1px; white-space: nowrap;
+  }
+  .tag-river { background: rgba(0,160,220,0.15); color: #5BC8E8; }
+  .tag-large { background: rgba(201,168,76,0.15); color: var(--gold); }
+  .tag-special { background: rgba(80,200,120,0.15); color: #6FD49A; }
+  .choi-undecided {
+    margin-top: 0.5rem;
+  }
+  .choi-undecided input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+  .choi-undecided label {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.82rem; color: var(--text-muted);
+    cursor: pointer;
+    padding: 8px 14px;
+    border: 1px dashed rgba(201,168,76,0.2);
+    border-radius: var(--radius);
+    transition: border-color var(--transition), color var(--transition);
+    user-select: none;
+  }
+  .choi-undecided input:checked + label,
+  .choi-undecided label:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ===================== CONTACT ===================== */
+  #contact { background: var(--black); }
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 2.5rem;
+  }
+  .contact-card {
+    background: var(--surface);
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: border-color var(--transition), transform var(--transition);
+  }
+  .contact-card:hover {
+    border-color: rgba(201,168,76,0.4);
+    transform: translateY(-4px);
+  }
+  .contact-icon {
+    font-size: 2rem; margin-bottom: 0.8rem;
+  }
+  .contact-label {
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-muted); margin-bottom: 0.4rem;
+  }
+  .contact-value {
+    font-size: 1rem; font-weight: 600;
+    color: var(--gold);
+  }
+
+  /* ===================== FOOTER ===================== */
+  footer {
+    background: var(--surface);
+    border-top: 1px solid rgba(201,168,76,0.12);
+    padding: 2.5rem 5% 1.5rem;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 900;
+    color: var(--gold); letter-spacing: 3px;
+    margin-bottom: 0.4rem;
+  }
+  .footer-slogan {
+    font-size: 0.8rem; color: var(--text-muted);
+    letter-spacing: 2px; margin-bottom: 1.5rem;
+  }
+  .footer-divider {
+    border: none; border-top: 1px solid rgba(201,168,76,0.1);
+    margin: 1.5rem 0;
+  }
+  .footer-copy { font-size: 0.75rem; color: rgba(136,136,128,0.5); }
+
+  /* ===================== FLOATING BUTTONS ===================== */
+  .floating-actions {
+    position: fixed; right: 1.2rem; bottom: 1.5rem;
+    display: flex; flex-direction: column; gap: 0.7rem;
+    z-index: 800;
+  }
+  .fab {
+    width: 50px; height: 50px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: transform var(--transition), box-shadow var(--transition);
+    font-size: 1.3rem; text-decoration: none;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.4);
+  }
+  .fab:hover { transform: scale(1.12); }
+  .fab-phone { background: linear-gradient(135deg, #C9A84C, #E8C96B); color: var(--black); }
+  .fab-zalo { background: #0068FF; color: #fff; }
+  .fab-messenger { background: linear-gradient(135deg, #0084FF, #44BEC7); color: #fff; }
+  .fab-label {
+    position: absolute; right: 62px;
+    background: rgba(10,10,10,0.9);
+    color: var(--text); font-size: 0.72rem;
+    padding: 4px 10px; border-radius: 4px;
+    white-space: nowrap; pointer-events: none;
+    opacity: 0; transition: opacity 0.2s;
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+  .fab:hover .fab-label { opacity: 1; }
+  .fab-wrap { position: relative; display: flex; align-items: center; }
+
+  /* ===================== SCROLL REVEAL ===================== */
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ===================== RESPONSIVE ===================== */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-img-wrap { max-width: 480px; margin: 0 auto; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-item:first-child { grid-column: 1; grid-row: 1; }
+    .contact-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 70px 5%; }
+    .form-row { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    .gallery-item:first-child { grid-column: 1 / 3; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .booking-form { padding: 1.5rem; }
+    .hero-meta { gap: 1rem; }
+    .hero-dot { display: none; }
+    .fab { width: 44px; height: 44px; font-size: 1.1rem; }
+  }
+  @media (max-width: 380px) {
+    .hero-cta { flex-direction: column; align-items: center; }
+    .menu-tabs { gap: 0.4rem; }
+    .menu-tab { font-size: 0.72rem; padding: 7px 14px; }
+  }
+
+  /* ===================== MARQUEE GALLERY ===================== */
+  .marquee-wrap {
+    overflow: hidden;
+    width: 100%;
+    margin-top: 2rem;
+    padding: 6px 0;
+    cursor: pointer;
+  }
+  .marquee-track {
+    display: flex;
+    gap: 12px;
+    width: max-content;
+    animation: marqueeScroll 40s linear infinite;
+  }
+  .marquee-track.paused { animation-play-state: paused; }
+  @keyframes marqueeScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .mq-item {
+    flex: 0 0 auto;
+    width: 280px;
+    height: 210px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    border: 1px solid rgba(201,168,76,0.15);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .mq-item.touch-active {
+    border-color: var(--gold);
+    box-shadow: 0 0 18px rgba(201,168,76,0.35);
+  }
+  .mq-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    display: block;
+  }
+  .mq-item:hover img { transform: scale(1.08); }
+  /* Lightbox */
+  #lightbox {
+    display: none; position: fixed; inset: 0; z-index: 9999;
+    background: rgba(0,0,0,0.95);
+    align-items: center; justify-content: center;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img {
+    max-width: 90vw; max-height: 88vh;
+    border-radius: 8px;
+    box-shadow: 0 0 80px rgba(201,168,76,0.2);
+  }
+  #lightbox-close {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    width: 42px; height: 42px; border-radius: 50%;
+    background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-size: 1.2rem; cursor: pointer;
+    transition: background var(--transition);
+  }
+  #lightbox-close:hover { background: rgba(201,168,76,0.3); }
+
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav id="navbar">
+  <div class="nav-logo">MÂY<span> FOOD</span></div>
+  <ul class="nav-links">
+    <li><a href="#hero">Trang Chủ</a></li>
+    <li><a href="#about">Giới Thiệu</a></li>
+    <li><a href="#menu">Thực Đơn</a></li>
+    <li><a href="#gallery">Hình Ảnh</a></li>
+    <li style="display:none"><a href="#video">Video</a></li>
+    <li><a href="#booking">Đặt Bàn</a></li>
+    <li><a href="#map">Vị Trí</a></li>
+    <li><a href="#contact">Liên Hệ</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#hero" class="mobile-link">🏠 Trang Chủ</a></li>
+    <li><a href="#about" class="mobile-link">ℹ️ Giới Thiệu</a></li>
+    <li><a href="#menu" class="mobile-link">🍽️ Thực Đơn</a></li>
+    <li><a href="#gallery" class="mobile-link">📷 Hình Ảnh</a></li>
+    <li style="display:none"><a href="#video" class="mobile-link">🎬 Video</a></li>
+    <li><a href="#booking" class="mobile-link">📅 Đặt Bàn</a></li>
+    <li><a href="#map" class="mobile-link">📍 Vị Trí</a></li>
+    <li><a href="#contact" class="mobile-link">📞 Liên Hệ</a></li>
+  </ul>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">⭐ 231 Phạm Ngũ Lão · Bảo An · Khánh Hòa</div>
+    <h1 class="hero-title">MÂY<br><span class="gold">FOOD</span></h1>
+    <p class="hero-sub">Nhậu Chill · Mồi Ngon · Giá Hợp Lý</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">🕓 Mở cửa <strong>09:00 – 22:30</strong></div>
+      <div class="hero-dot"></div>
+      <div class="hero-meta-item">📞 <strong>09xxxxxxxx</strong></div>
+      <div class="hero-dot"></div>
+      <div class="hero-meta-item">📍 231 Phạm Ngũ Lão, Bảo An, Khánh Hòa</div>
+    </div>
+    <div class="hero-cta">
+      <a href="#booking" class="btn btn-primary">📅 Đặt Bàn Ngay</a>
+      <a href="tel:09xxxxxxxx" class="btn btn-outline">📞 Gọi Điện</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Cuộn xuống</span>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <img src="https://i.ibb.co/jCYjBmf/IMG20260616095139.jpg" alt="Không gian MÂY FOOD – View sông">
+      </div>
+      <div>
+        <p class="section-eyebrow reveal">Về chúng tôi</p>
+        <h2 class="section-title reveal reveal-delay-1">Không Gian<br><em>Thư Giãn</em> Tuyệt Vời</h2>
+        <div class="gold-line reveal reveal-delay-1"></div>
+        <p class="reveal reveal-delay-2" style="color:var(--text-muted);line-height:1.8;margin-bottom:1rem;">
+          <strong style="color:var(--text)">MÂY FOOD</strong> là quán nhậu chuyên phục vụ các món nướng, hải sản, lẩu và đồ nhậu với không gian thoải mái, phù hợp họp mặt bạn bè và gia đình.
+        </p>
+        <p class="reveal reveal-delay-2" style="color:var(--text-muted);line-height:1.8;margin-bottom:1.8rem;">
+          Tọa lạc tại <strong style="color:var(--text)">231 Phạm Ngũ Lão, Bảo An, Khánh Hòa</strong>, chúng tôi mang đến trải nghiệm ẩm thực đậm chất miền Trung với nguyên liệu tươi ngon, chế biến tỉ mỉ và giá cả phải chăng.
+        </p>
+        <div class="about-stats reveal reveal-delay-3">
+          <div class="about-stat highlight">
+            <div class="about-stat-num" id="years-open">—</div>
+            <div class="about-stat-label">🎉 Đồng hành cùng bạn từ 01/01/2023</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">200+</div>
+            <div class="about-stat-label">Khách mỗi đêm</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">80+</div>
+            <div class="about-stat-label">Món ăn phong phú</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">09:00</div>
+            <div class="about-stat-label">Mở cửa hàng ngày</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">100%</div>
+            <div class="about-stat-label">Nguyên liệu tươi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MENU ===================== -->
+<section id="menu">
+  <div class="container">
+    <p class="section-eyebrow reveal">Khám phá</p>
+    <h2 class="section-title reveal reveal-delay-1">Thực Đơn <em>Đặc Sắc</em></h2>
+    <div class="gold-line reveal reveal-delay-1"></div>
+
+    <div class="menu-search-wrap reveal reveal-delay-1">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input type="text" id="menu-search" placeholder="Tìm món ăn... (ví dụ: lẩu, mực, gà)" autocomplete="off">
+      <button id="menu-search-clear" title="Xóa tìm kiếm">✕</button>
+    </div>
+    <p class="menu-search-info" id="menu-search-info"></p>
+
+    <div class="menu-toggle-wrap reveal reveal-delay-2">
+      <button class="menu-toggle-btn" id="menu-toggle-btn" type="button">
+        <span>📋 Menu <span class="menu-toggle-current" id="menu-toggle-current">— ✨ Đặc biệt</span></span>
+        <span class="chev">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </span>
+      </button>
+      <div class="menu-tabs-panel" id="menu-tabs-panel">
+        <div class="menu-tabs">
+          <button class="menu-tab active" data-tab="dacbiet">✨ Đặc biệt</button>
+          <button class="menu-tab" data-tab="dauhu">🥢 Đậu hủ - Khổ qua - Khoai</button>
+          <button class="menu-tab" data-tab="salad">🥗 Salad - Ngũ quả</button>
+          <button class="menu-tab" data-tab="rau">🥬 Rau - Xào</button>
+          <button class="menu-tab" data-tab="mixao">🍜 Mì xào</button>
+          <button class="menu-tab" data-tab="tom">🍤 Tôm</button>
+          <button class="menu-tab" data-tab="muc">🦑 Mực</button>
+          <button class="menu-tab" data-tab="monmoi">🆕 Món mới</button>
+          <button class="menu-tab" data-tab="lau">🍲 Lẩu</button>
+          <button class="menu-tab" data-tab="cabien">🐟 Cá biển - Nai</button>
+          <button class="menu-tab" data-tab="casong">🐠 Cá sông - Ếch - Lươn</button>
+          <button class="menu-tab" data-tab="cakho">🐡 Cá khô - Combo nướng</button>
+          <button class="menu-tab" data-tab="cangu">🐋 Cá ngừ đại dương</button>
+          <button class="menu-tab" data-tab="dongdoi">🍢 Dồi - Đồ nhậu khác</button>
+          <button class="menu-tab" data-tab="bo">🐂 Bò - Cháo - Cánh gà</button>
+          <button class="menu-tab" data-tab="heorung">🐗 Heo rừng - Heo - Nấm</button>
+          <button class="menu-tab" data-tab="haugoi">🦪 Hàu - Gỏi - Cơm chiên</button>
+          <button class="menu-tab" data-tab="ga">🍗 Gà - Sụn</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab Đặc biệt -->
+    <div class="menu-panel active menu-grid" id="tab-dacbiet">
+      <div class="menu-item"><div><div class="menu-item-name">Đậu hủ Mây đặc biệt</div></div><div class="menu-item-price">65.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cơm chiên Mây đặc biệt</div></div><div class="menu-item-price">95.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gỏi Mây đặc biệt</div></div><div class="menu-item-price">109.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lẩu Mây đặc biệt</div></div><div class="menu-item-price">339.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Heo rừng Mây đặc biệt</div></div><div class="menu-item-price">139.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bạch tuộc Mây đặc biệt</div></div><div class="menu-item-price">149.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gà mẹt 5 món</div></div><div class="menu-item-price">479.000đ</div></div>
+    </div>
+
+    <!-- Tab Đậu hủ - Khổ qua - Khoai -->
+    <div class="menu-panel menu-grid" id="tab-dauhu">
+      <div class="menu-item"><div><div class="menu-item-name">Đậu hủ BaSa hấp tía tô</div></div><div class="menu-item-price">49.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Đậu hủ BaSa chiên giòn</div></div><div class="menu-item-price">55.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Đậu hủ thường hấp</div></div><div class="menu-item-price">35.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Đậu hủ thường chiên giòn</div></div><div class="menu-item-price">45.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Khổ qua giảm bông</div></div><div class="menu-item-price">75.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Khổ qua xào trứng</div></div><div class="menu-item-price">65.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bắp xào hành</div></div><div class="menu-item-price">45.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bắp xào tép khô</div></div><div class="menu-item-price">55.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bắp xào tôm khô</div></div><div class="menu-item-price">55.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Khoai tây chiên</div></div><div class="menu-item-price">45.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Khoai tây bơ đường</div></div><div class="menu-item-price">49.000đ</div></div>
+    </div>
+
+    <!-- Tab Salad - Ngũ quả -->
+    <div class="menu-panel menu-grid" id="tab-salad">
+      <div class="menu-item"><div><div class="menu-item-name">Salad trộn dầu giấm</div></div><div class="menu-item-price">45.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Salad trứng</div></div><div class="menu-item-price">55.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Salad bò</div></div><div class="menu-item-price">69.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Salad bò, trứng</div></div><div class="menu-item-price">89.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Ngũ quả kho quẹt</div></div><div class="menu-item-price">75.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Ngũ quả luộc + trứng</div></div><div class="menu-item-price">79.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Đậu bắp hấp + chao</div></div><div class="menu-item-price">35.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bầu luộc</div></div><div class="menu-item-price">35.000đ</div></div>
+    </div>
+
+    <!-- Tab Rau - Xào -->
+    <div class="menu-panel menu-grid" id="tab-rau">
+      <div class="menu-item"><div><div class="menu-item-name">Kim chi Hàn Quốc</div></div><div class="menu-item-price">35.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Rau lang xào tỏi</div></div><div class="menu-item-price">55.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Rau lang luộc</div></div><div class="menu-item-price">45.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Rau lang luộc kho quẹt</div></div><div class="menu-item-price">55.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Rau muống xào tỏi</div></div><div class="menu-item-price">55.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Rau muống luộc</div></div><div class="menu-item-price">45.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cải thìa xào tỏi</div></div><div class="menu-item-price">55.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Rau thập cẩm luộc</div></div><div class="menu-item-price">45.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Rau thập cẩm kho quẹt</div></div><div class="menu-item-price">55.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Măng tây xào tỏi</div></div><div class="menu-item-price">65.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Măng tây xào bò</div></div><div class="menu-item-price">85.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Hoa thiên lý xào tỏi</div></div><div class="menu-item-price">55.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Hoa thiên lý xào bò</div></div><div class="menu-item-price">75.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Rau lẩu thêm</div></div><div class="menu-item-price">20.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Nấm xào tỏi</div></div><div class="menu-item-price">65.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Nấm xào chay</div></div><div class="menu-item-price">65.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bí nụ xào tỏi</div></div><div class="menu-item-price">65.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bí nụ luộc</div></div><div class="menu-item-price">55.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bí nụ luộc kho quẹt</div></div><div class="menu-item-price">65.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Đọt bí/bầu/su luộc</div></div><div class="menu-item-price">45.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Đọt bí/bầu/su xào</div></div><div class="menu-item-price">55.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cải mầm trộn dầu giấm</div></div><div class="menu-item-price">45.000đ</div></div>
+    </div>
+
+    <!-- Tab Mì xào -->
+    <div class="menu-panel menu-grid" id="tab-mixao">
+      <div class="menu-item"><div><div class="menu-item-name">Mì xào hải sản</div></div><div class="menu-item-price">95.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Mì xào bò</div></div><div class="menu-item-price">95.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Mì xào cải</div></div><div class="menu-item-price">65.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Mì xào Singapore</div></div><div class="menu-item-price">129.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Mì trộn hải sản</div></div><div class="menu-item-price">95.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Mì trộn bò</div></div><div class="menu-item-price">95.000đ</div></div>
+    </div>
+
+    <!-- Tab Tôm -->
+    <div class="menu-panel menu-grid" id="tab-tom">
+      <div class="menu-item"><div><div class="menu-item-name">Tôm chiên xù</div></div><div class="menu-item-price">95.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Tôm chiên giòn</div></div><div class="menu-item-price">95.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Tôm cháy tỏi</div></div><div class="menu-item-price">95.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Tôm ram me</div></div><div class="menu-item-price">95.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Tôm nướng</div></div><div class="menu-item-price">95.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Tôm hấp nước dừa</div><div class="menu-item-note">Theo ngày</div></div><div class="menu-item-price">Theo ngày</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Tôm hấp</div><div class="menu-item-note">Theo ngày</div></div><div class="menu-item-price">Theo ngày</div></div>
+    </div>
+
+    <!-- Tab Mực -->
+    <div class="menu-panel menu-grid" id="tab-muc">
+      <div class="menu-item"><div><div class="menu-item-name">Mực xào chua ngọt</div></div><div class="menu-item-price">105.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Mực chiên xù</div></div><div class="menu-item-price">105.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Mực nướng muối ớt</div></div><div class="menu-item-price">105.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Mực nướng chao</div></div><div class="menu-item-price">105.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Mực hấp hành cần</div></div><div class="menu-item-price">115.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Mực né sa tế</div></div><div class="menu-item-price">150.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Mực khô</div><div class="menu-item-note">Theo thời giá</div></div><div class="menu-item-price">Theo thời giá</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Mực lá, mực nang, mực ống</div><div class="menu-item-note">Theo thời giá</div></div><div class="menu-item-price">Theo thời giá</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Mực một nắng</div><div class="menu-item-note">Theo thời giá</div></div><div class="menu-item-price">Theo thời giá</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Mực trứng chiên mắm</div></div><div class="menu-item-price">489.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Mực trứng chiên giòn/xù/bơ</div></div><div class="menu-item-price">89.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Mực trứng hấp</div></div><div class="menu-item-price">89.000đ</div></div>
+    </div>
+
+    <!-- Tab Món mới -->
+    <div class="menu-panel menu-grid" id="tab-monmoi">
+      <div class="menu-item"><div><div class="menu-item-name">Bò 1 nắng chấm muối chéo</div></div><div class="menu-item-price">150.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gà nướng ống tre (gà tre)</div></div><div class="menu-item-price">250.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gà nướng ống tre (gà ta)</div></div><div class="menu-item-price">230.000đ/kg</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bạch tuộc nhúng mẻ</div></div><div class="menu-item-price">179.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bạch tuộc xông hơi</div></div><div class="menu-item-price">149.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bún đậu mắm tôm</div></div><div class="menu-item-price">129.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Hải sản sốt Thái + bún, mắm nêm</div></div><div class="menu-item-price">239.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cơm vắt nướng + mắm quẹt</div></div><div class="menu-item-price">79.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Ốc Bươu xào sả ớt</div></div><div class="menu-item-price">85.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Chả ốc Mây</div></div><div class="menu-item-price">95.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Ốc bươu nhồi ống tre</div></div><div class="menu-item-price">85.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Chả giò cá lóc (nhỏ)</div></div><div class="menu-item-price">180.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Giò heo chiên giòn/hầm đu đủ</div></div><div class="menu-item-price">130.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Chim sẻ rô ty</div></div><div class="menu-item-price">Liên hệ</div></div>
+    </div>
+
+    <!-- Tab Lẩu -->
+    <div class="menu-panel menu-grid" id="tab-lau">
+      <div class="menu-item"><div><div class="menu-item-name">Lẩu hải sản</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lẩu Thái</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lẩu cá lóc</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lẩu cá lóc hoa chuối</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lẩu lươn</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lẩu lươn cua đồng</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lẩu lươn măng chua</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lẩu ếch lá giang, lá me</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lẩu ếch riêu cua</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lẩu ếch măng chua</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lẩu cá thác lác khổ qua</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lẩu cá bóp / cá mú</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lẩu mắt cá ngừ nấu lá me</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lẩu ếch nấu lá me</div></div><div class="menu-item-price">179.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lẩu ếch lá giang</div></div><div class="menu-item-price">179.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lẩu ếch cua đồng</div></div><div class="menu-item-price">219.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lẩu nấm hải sản</div></div><div class="menu-item-price">239.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lẩu gà tre</div></div><div class="menu-item-price">250.000đ</div></div>
+    </div>
+
+    <!-- Tab Cá biển - Nai -->
+    <div class="menu-panel menu-grid" id="tab-cabien">
+      <div class="menu-item"><div><div class="menu-item-name">Cá bò da/cá chim/cá dìa/cá tắc kè/cá bóp/cá bè nướng - hấp</div><div class="menu-item-note">Tính theo kg</div></div><div class="menu-item-price">Theo kg</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cá dìa nấu lá me</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cá mú hấp cuốn bánh tráng</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lẩu cá mú</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cá mú phi-lê chấm mù tạt</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Nai hấp</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Nai nướng muối ớt</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Nai xào sả ớt</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Nai nhúng mẻ</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Nai nhúng giấm</div></div><div class="menu-item-price">Liên hệ</div></div>
+    </div>
+
+    <!-- Tab Cá sông - Ếch - Lươn -->
+    <div class="menu-panel menu-grid" id="tab-casong">
+      <div class="menu-item"><div><div class="menu-item-name">Cá lóc hấp bầu</div></div><div class="menu-item-price">179.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cá lóc chiên giòn</div></div><div class="menu-item-price">179.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cá lóc um bún tàu</div></div><div class="menu-item-price">179.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cá lóc nướng giấy bạc/nướng trụi</div></div><div class="menu-item-price">179.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cá rô chiên xù</div></div><div class="menu-item-price">85.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Chình sông</div><div class="menu-item-note">Theo kỳ</div></div><div class="menu-item-price">Theo kỳ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cá lăng</div><div class="menu-item-note">Theo kỳ</div></div><div class="menu-item-price">Theo kỳ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Ếch xào sả ớt</div></div><div class="menu-item-price">89.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Ếch xào lăn</div></div><div class="menu-item-price">89.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Ếch chiên bơ</div></div><div class="menu-item-price">89.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Ếch nướng muối ớt</div></div><div class="menu-item-price">89.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Ếch ủ rơm</div></div><div class="menu-item-price">95.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Ếch nổ muối hột</div></div><div class="menu-item-price">89.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lươn xào sả ớt</div></div><div class="menu-item-price">99.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lươn chiên giòn</div></div><div class="menu-item-price">99.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lươn xào lá lốt</div></div><div class="menu-item-price">99.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lươn xào lăn</div></div><div class="menu-item-price">109.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lươn bằm xúc bánh tráng</div></div><div class="menu-item-price">99.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lươn um chuối</div></div><div class="menu-item-price">169.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lươn um</div></div><div class="menu-item-price">139.000đ</div></div>
+    </div>
+
+    <!-- Tab Cá khô - Combo nướng -->
+    <div class="menu-panel menu-grid" id="tab-cakho">
+      <div class="menu-item"><div><div class="menu-item-name">Cá nhồng nướng</div></div><div class="menu-item-price">69.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cá chỉ vàng nướng</div></div><div class="menu-item-price">69.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cá đuối nướng</div></div><div class="menu-item-price">79.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cá khoai nướng</div></div><div class="menu-item-price">69.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cá dành nướng</div></div><div class="menu-item-price">69.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Ba chỉ heo nướng - 1/2kg</div></div><div class="menu-item-price">209.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gà ta (tính kg)</div></div><div class="menu-item-price">230.000đ/kg</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Combo 1: Bạch tuộc, tôm, cá</div></div><div class="menu-item-price">379.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Combo 2: Ba chỉ heo, gà, hải sản</div></div><div class="menu-item-price">559.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Combo 3: Cá mú, ba chỉ bò, mực, tôm, gà</div></div><div class="menu-item-price">999.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gà mẹt 5 món</div><div class="menu-item-note">45 phút</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Món nướng</div><div class="menu-item-note">45 phút</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gà ta + gà tre + cá lóc</div><div class="menu-item-note">45 phút</div></div><div class="menu-item-price">Liên hệ</div></div>
+    </div>
+
+    <!-- Tab Cá ngừ đại dương -->
+    <div class="menu-panel menu-grid" id="tab-cangu">
+      <div class="menu-item"><div><div class="menu-item-name">Trứng cá ngừ chiên mắm</div></div><div class="menu-item-price">89.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Trứng cá ngừ hấp hành</div></div><div class="menu-item-price">89.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Trứng cá ngừ xào chua ngọt</div></div><div class="menu-item-price">89.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bao tử cá ngừ xào sả ớt</div></div><div class="menu-item-price">89.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bao tử cá ngừ hấp tiêu</div></div><div class="menu-item-price">89.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bao tử cá ngừ hầm tiêu</div></div><div class="menu-item-price">159.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Mắt cá ngừ hầm tiêu</div></div><div class="menu-item-price">89.000đ</div></div>
+    </div>
+
+    <!-- Tab Dồi - Đồ nhậu khác -->
+    <div class="menu-panel menu-grid" id="tab-dongdoi">
+      <div class="menu-item"><div><div class="menu-item-name">Dồi cát gói</div></div><div class="menu-item-price">120.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Dồi cát nướng</div><div class="menu-item-note">80k - 100k/lạng</div></div><div class="menu-item-price">80k-100k/lạng</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Dồi cát bằm xúc bánh tráng</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Dồi cát nấu lá me</div></div><div class="menu-item-price">Liên hệ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Dồi trường gói</div></div><div class="menu-item-price">120.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Dồi trường hấp</div></div><div class="menu-item-price">120.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Dồi trường xào sả ớt</div></div><div class="menu-item-price">120.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Dồi trường xào cải chua</div></div><div class="menu-item-price">120.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Dồi trường xào chua ngọt</div></div><div class="menu-item-price">120.000đ</div></div>
+    </div>
+
+    <!-- Tab Bò - Cháo - Cánh gà -->
+    <div class="menu-panel menu-grid" id="tab-bo">
+      <div class="menu-item"><div><div class="menu-item-name">Bò xào sả ớt</div></div><div class="menu-item-price">99.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bò lúc lắc + khoai tây</div></div><div class="menu-item-price">119.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bò cuộn cải xanh</div></div><div class="menu-item-price">99.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bò cuộn lá lốt</div></div><div class="menu-item-price">150.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bò xào chua ngọt</div></div><div class="menu-item-price">99.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bò xào cải chua</div></div><div class="menu-item-price">99.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bò sốt tiêu xanh</div></div><div class="menu-item-price">109.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bò bít tết</div></div><div class="menu-item-price">119.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bò nhúng giấm</div></div><div class="menu-item-price">169.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bò nhúng mẻ</div></div><div class="menu-item-price">169.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bắp bò ngâm mắm nhĩ</div></div><div class="menu-item-price">99.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gân bò xào sả ớt</div></div><div class="menu-item-price">85.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gân bò xào cải chua</div></div><div class="menu-item-price">85.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cháo hàu</div></div><div class="menu-item-price">99.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cháo bò</div></div><div class="menu-item-price">109.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cháo hải sản</div></div><div class="menu-item-price">149.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cháo bò câu (1 con)</div></div><div class="menu-item-price">129.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cánh gà nướng muối</div></div><div class="menu-item-price">69.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cánh gà bơ cay</div></div><div class="menu-item-price">69.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cánh gà rang me</div></div><div class="menu-item-price">69.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cánh gà chiên mắm</div></div><div class="menu-item-price">69.000đ</div></div>
+    </div>
+
+    <!-- Tab Heo rừng - Heo - Nấm -->
+    <div class="menu-panel menu-grid" id="tab-heorung">
+      <div class="menu-item"><div><div class="menu-item-name">Heo rừng xào sả ớt</div></div><div class="menu-item-price">105.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Heo rừng xào lăn</div></div><div class="menu-item-price">105.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Heo rừng nướng muối ớt</div></div><div class="menu-item-price">105.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Heo rừng nướng giả cầy</div></div><div class="menu-item-price">119.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Heo rừng nướng giấy bạc</div></div><div class="menu-item-price">119.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Heo rừng rang tiêu</div></div><div class="menu-item-price">109.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Heo rừng hấp sả</div></div><div class="menu-item-price">109.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Heo rừng ram bắc</div></div><div class="menu-item-price">119.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Heo rừng nhúng mẻ</div></div><div class="menu-item-price">169.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Heo rừng nhúng giấm</div></div><div class="menu-item-price">169.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Ba chỉ nướng</div></div><div class="menu-item-price">85.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Sườn heo xào chua ngọt</div></div><div class="menu-item-price">95.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Sườn heo nướng ngũ vị</div></div><div class="menu-item-price">95.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Sườn heo nướng muối ớt</div></div><div class="menu-item-price">95.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Ba chỉ luộc + bún mắm nêm</div></div><div class="menu-item-price">109.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Mẹt bún đậu mắm tôm</div></div><div class="menu-item-price">129.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bao tử hầm tiêu xanh</div></div><div class="menu-item-price">139.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bao tử hấp tiêu xanh</div></div><div class="menu-item-price">99.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bao tử xào sả ớt</div></div><div class="menu-item-price">99.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Bao tử bát bửu</div></div><div class="menu-item-price">99.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Nấm - đậu hũ cuộn giấy bạc</div></div><div class="menu-item-price">179.000đ</div></div>
+    </div>
+
+    <!-- Tab Hàu - Gỏi - Cơm chiên -->
+    <div class="menu-panel menu-grid" id="tab-haugoi">
+      <div class="menu-item"><div><div class="menu-item-name">Hàu nướng phomai</div></div><div class="menu-item-price">99.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Hàu nướng mỡ hành</div></div><div class="menu-item-price">89.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Hàu đút lò</div></div><div class="menu-item-price">99.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Hàu mù tạt</div></div><div class="menu-item-price">149.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gỏi xoài cá cơm mồm</div></div><div class="menu-item-price">65.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gỏi chân gà rút xương</div></div><div class="menu-item-price">85.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gỏi chân gà cóc xoài</div></div><div class="menu-item-price">85.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gỏi hải sản</div></div><div class="menu-item-price">95.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gỏi bò bóp thấu</div></div><div class="menu-item-price">95.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gỏi dồi</div></div><div class="menu-item-price">120.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gỏi hoa chuối tôm thịt</div></div><div class="menu-item-price">109.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gỏi gà tre hoa chuối</div></div><div class="menu-item-price">225.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gỏi bò Thái Lan</div></div><div class="menu-item-price">119.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cơm chiên ớt xanh</div></div><div class="menu-item-price">55.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cơm chiên trứng</div></div><div class="menu-item-price">65.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cơm chiên dương châu</div></div><div class="menu-item-price">79.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cơm chiên cá mặn</div></div><div class="menu-item-price">65.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cơm chiên hải sản</div></div><div class="menu-item-price">89.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cơm chiên Mây đặc biệt</div></div><div class="menu-item-price">95.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Cơm chiên bò trứng trứng</div></div><div class="menu-item-price">119.000đ</div></div>
+    </div>
+
+    <!-- Tab Gà - Sụn -->
+    <div class="menu-panel menu-grid" id="tab-ga">
+      <div class="menu-item"><div><div class="menu-item-name">Gà nướng muối ớt</div><div class="menu-item-note">Món chờ 30 phút</div></div><div class="menu-item-price">230.000đ/kg</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gà hấp hành</div><div class="menu-item-note">Món chờ 30 phút</div></div><div class="menu-item-price">230.000đ/kg</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gà hấp muối</div><div class="menu-item-note">Món chờ 30 phút</div></div><div class="menu-item-price">230.000đ/kg</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gà sốt mắm nhĩ</div><div class="menu-item-note">Món chờ 30 phút</div></div><div class="menu-item-price">230.000đ/kg</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gà nổ muối</div><div class="menu-item-note">Món chờ 30 phút</div></div><div class="menu-item-price">230.000đ/kg</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gà rang tiêu</div><div class="menu-item-note">Món chờ 30 phút</div></div><div class="menu-item-price">230.000đ/kg</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gà mái mơ</div><div class="menu-item-note">Món chờ 30 phút</div></div><div class="menu-item-price">250.000đ/kg/món</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Mướp xào lòng</div><div class="menu-item-note">Món thêm</div></div><div class="menu-item-price">+35.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gà tre hấp hành</div><div class="menu-item-note">Món chờ 30 phút</div></div><div class="menu-item-price">209.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Lẩu gà tre</div><div class="menu-item-note">Món chờ 30 phút</div></div><div class="menu-item-price">250.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gà tre hấp muối, gà nổ muối</div><div class="menu-item-note">Món chờ 30 phút</div></div><div class="menu-item-price">229.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gà tre sốt mắm nhĩ</div><div class="menu-item-note">Món chờ 30 phút</div></div><div class="menu-item-price">250.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gà tre rang tiêu</div><div class="menu-item-note">Món chờ 30 phút</div></div><div class="menu-item-price">250.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gà ác tiềm thuốc Bắc</div><div class="menu-item-note">Món chờ 30 phút</div></div><div class="menu-item-price">369.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Gà ác tiềm thuốc Bắc (nhỏ)</div><div class="menu-item-note">Món chờ 30 phút</div></div><div class="menu-item-price">279.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Sụn gà/sụn heo cay Thái</div></div><div class="menu-item-price">79.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Sụn gà/sụn heo mỡ hành</div></div><div class="menu-item-price">79.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Sụn gà/sụn heo xào sả ớt</div></div><div class="menu-item-price">79.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Sụn gà/sụn heo bơ cay</div></div><div class="menu-item-price">79.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Sụn gà/sụn heo chiên mắm</div></div><div class="menu-item-price">79.000đ</div></div>
+      <div class="menu-item"><div><div class="menu-item-name">Sụn gà/sụn heo cháy tỏi</div></div><div class="menu-item-price">79.000đ</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GALLERY ===================== -->
+<section id="gallery">
+  <div class="container">
+    <p class="section-eyebrow reveal">Hình ảnh</p>
+    <h2 class="section-title reveal reveal-delay-1">Không Gian &amp; <em>Món Ngon</em></h2>
+    <div class="gold-line reveal reveal-delay-1"></div>
+  </div>
+
+  <!-- Marquee: không gian & món ăn (tất cả ảnh, cuộn trái → phải, chạm để dừng) -->
+  <div class="marquee-wrap reveal reveal-delay-2">
+    <div class="marquee-track" id="mq1">
+
+      <!-- Không gian quán -->
+      <div class="mq-item" data-src="https://i.ibb.co/SSyHpCG/img2.jpg">
+        <img src="https://i.ibb.co/SSyHpCG/img2.jpg" alt="Không gian MÂY FOOD" loading="lazy">
+      </div>
+      <div class="mq-item" data-src="https://i.ibb.co/cS4kfyrW/img3.jpg">
+        <img src="https://i.ibb.co/cS4kfyrW/img3.jpg" alt="Không gian MÂY FOOD" loading="lazy">
+      </div>
+      <div class="mq-item" data-src="https://i.ibb.co/Rd5HB5v/img5.jpg">
+        <img src="https://i.ibb.co/Rd5HB5v/img5.jpg" alt="Không gian MÂY FOOD" loading="lazy">
+      </div>
+      <div class="mq-item" data-src="https://i.ibb.co/XTbBVtN/img6.jpg">
+        <img src="https://i.ibb.co/XTbBVtN/img6.jpg" alt="Không gian MÂY FOOD" loading="lazy">
+      </div>
+      <div class="mq-item" data-src="https://i.ibb.co/kVXLW41d/img8.jpg">
+        <img src="https://i.ibb.co/kVXLW41d/img8.jpg" alt="Không gian MÂY FOOD" loading="lazy">
+      </div>
+      <div class="mq-item" data-src="https://i.ibb.co/hRyYrhfj/img9.jpg">
+        <img src="https://i.ibb.co/hRyYrhfj/img9.jpg" alt="Không gian MÂY FOOD" loading="lazy">
+      </div>
+      <div class="mq-item" data-src="https://i.ibb.co/Mxq6XY7B/img11.jpg">
+        <img src="https://i.ibb.co/Mxq6XY7B/img11.jpg" alt="Không gian MÂY FOOD" loading="lazy">
+      </div>
+      <div class="mq-item" data-src="https://i.ibb.co/tfRWwk8/img12.jpg">
+        <img src="https://i.ibb.co/tfRWwk8/img12.jpg" alt="Không gian MÂY FOOD" loading="lazy">
+      </div>
+      <div class="mq-item" data-src="https://i.ibb.co/DHLBqjJy/img13.jpg">
+        <img src="https://i.ibb.co/DHLBqjJy/img13.jpg" alt="Không gian MÂY FOOD" loading="lazy">
+      </div>
+
+      <!-- Món ăn -->
+      <div class="mq-item" data-src="https://i.ibb.co/TxgW0M66/img4.jpg">
+        <img src="https://i.ibb.co/TxgW0M66/img4.jpg" alt="Món ăn MÂY FOOD" loading="lazy">
+      </div>
+      <div class="mq-item" data-src="https://i.ibb.co/PvtG1ZJL/img7.jpg">
+        <img src="https://i.ibb.co/PvtG1ZJL/img7.jpg" alt="Món ăn MÂY FOOD" loading="lazy">
+      </div>
+      <div class="mq-item" data-src="https://i.ibb.co/s9bZ9rDZ/img10.jpg">
+        <img src="https://i.ibb.co/s9bZ9rDZ/img10.jpg" alt="Món ăn MÂY FOOD" loading="lazy">
+      </div>
+      <div class="mq-item" data-src="https://i.ibb.co/JJzfPdx/img14.jpg">
+        <img src="https://i.ibb.co/JJzfPdx/img14.jpg" alt="Món ăn MÂY FOOD" loading="lazy">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox">
+  <button id="lightbox-close">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+
+
+
+
+<!-- ===================== BOOKING ===================== -->
+<section id="booking">
+  <div class="container">
+    <div class="booking-wrap">
+      <p class="section-eyebrow reveal" style="text-align:center">Liên hệ trước để có chỗ đẹp nhất</p>
+      <h2 class="section-title reveal reveal-delay-1" style="text-align:center">Đặt Bàn <em>Ngay</em></h2>
+      <div class="gold-line center reveal reveal-delay-1"></div>
+
+      <div class="booking-form reveal reveal-delay-2">
+        <div class="zalo-badge">
+          <svg width="20" height="20" viewBox="0 0 40 40"><rect width="40" height="40" rx="20" fill="#0068FF"/><text x="50%" y="56%" dominant-baseline="middle" text-anchor="middle" font-size="16" font-weight="bold" fill="white" font-family="Arial">Z</text></svg>
+          <span>Thông tin sẽ được gửi tự động qua <strong>Zalo</strong> của quán — bạn chỉ cần bấm <strong>Gửi</strong> là xong!</span>
+        </div>
+        <!-- CHỌN CHÒI -->
+        <div style="margin-bottom:1.5rem;">
+          <div class="seating-picker-label">
+            Bạn muốn ngồi ở chòi nào?
+            <span class="seating-hint">🌊 Chòi gần sông mát và hay hết chỗ sớm</span>
+          </div>
+          <div class="seating-groups">
+            <div>
+              <div class="seating-group-title">Bàn nhỏ · 2 – 4 người</div>
+              <div class="choi-grid">
+                <div class="choi-card"><input type="radio" name="f-choi" id="fc1" value="C1"><label for="fc1"><span class="choi-name">C1</span><span class="choi-cap">2–4 người</span><span class="choi-tag tag-river">🌊 Gần sông</span></label></div>
+                <div class="choi-card"><input type="radio" name="f-choi" id="fc2" value="C2"><label for="fc2"><span class="choi-name">C2</span><span class="choi-cap">2–4 người</span><span class="choi-tag tag-river">🌊 Gần sông</span></label></div>
+                <div class="choi-card"><input type="radio" name="f-choi" id="fc3" value="C3"><label for="fc3"><span class="choi-name">C3</span><span class="choi-cap">2–4 người</span></label></div>
+                <div class="choi-card"><input type="radio" name="f-choi" id="fc4" value="C4"><label for="fc4"><span class="choi-name">C4</span><span class="choi-cap">2–4 người</span></label></div>
+                <div class="choi-card"><input type="radio" name="f-choi" id="fc5" value="C5"><label for="fc5"><span class="choi-name">C5</span><span class="choi-cap">2–4 người</span></label></div>
+                <div class="choi-card"><input type="radio" name="f-choi" id="fc7" value="C7"><label for="fc7"><span class="choi-name">C7</span><span class="choi-cap">2–4 người</span></label></div>
+                <div class="choi-card"><input type="radio" name="f-choi" id="fc8" value="C8"><label for="fc8"><span class="choi-name">C8</span><span class="choi-cap">2–4 người</span><span class="choi-tag tag-river">🌊 Gần sông</span></label></div>
+                <div class="choi-card"><input type="radio" name="f-choi" id="fc9" value="C9"><label for="fc9"><span class="choi-name">C9</span><span class="choi-cap">2–4 người</span><span class="choi-tag tag-river">🌊 Gần sông</span></label></div>
+              </div>
+            </div>
+            <div>
+              <div class="seating-group-title">Chòi câu cá & nhóm vừa · 4 – 12 người</div>
+              <div class="choi-grid">
+                <div class="choi-card"><input type="radio" name="f-choi" id="fccf" value="Chòi câu cá"><label for="fccf"><span class="choi-name">🎣</span><span class="choi-name" style="font-size:0.82rem;">Câu Cá</span><span class="choi-cap">4–8 người</span><span class="choi-tag tag-river">🌊 Gần sông</span></label></div>
+                <div class="choi-card"><input type="radio" name="f-choi" id="fc6" value="C6"><label for="fc6"><span class="choi-name">C6</span><span class="choi-cap">tối đa 12 người</span><span class="choi-tag tag-large">★ Bàn lớn</span></label></div>
+              </div>
+            </div>
+            <div>
+              <div class="seating-group-title">Nhóm lớn & đặc biệt</div>
+              <div class="choi-grid">
+                <div class="choi-card"><input type="radio" name="f-choi" id="fc10" value="C10"><label for="fc10"><span class="choi-name">C10</span><span class="choi-cap">35+ người</span><span class="choi-tag tag-large">★ Tiệc lớn</span></label></div>
+                <div class="choi-card"><input type="radio" name="f-choi" id="fmetay" value="Chòi me tây"><label for="fmetay"><span class="choi-name">🌳</span><span class="choi-name" style="font-size:0.82rem;">Me Tây</span><span class="choi-cap">8–10 người</span><span class="choi-tag tag-special">✦ Đặc biệt</span></label></div>
+                <div class="choi-card"><input type="radio" name="f-choi" id="fcamtrai" value="Chòi cắm trại"><label for="fcamtrai"><span class="choi-name">⛺</span><span class="choi-name" style="font-size:0.82rem;">Cắm Trại</span><span class="choi-cap">8–10 người</span><span class="choi-tag tag-special">✦ Đặc biệt</span></label></div>
+              </div>
+            </div>
+          </div>
+          <div class="choi-undecided" style="position:relative;">
+            <input type="radio" name="f-choi" id="fundecided" value="Chưa quyết định">
+            <label for="fundecided">Chưa quyết định – nhờ quán tư vấn khi xác nhận</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group"><label>Họ và tên *</label><input type="text" id="f-name" placeholder="Nguyễn Văn A"></div>
+          <div class="form-group"><label>Số điện thoại *</label><input type="tel" id="f-phone" placeholder="09xxxxxxxx"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Số lượng khách</label><select id="f-guests"><option value="">Chọn số khách</option><option>1 – 2 người</option><option>3 – 5 người</option><option>6 – 10 người</option><option>11 – 20 người</option><option>Trên 20 người</option></select></div>
+          <div class="form-group"><label>Ngày đặt *</label><input type="date" id="f-date"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Giờ đặt</label><select id="f-time"><option value="">Chọn giờ</option><option>11:00</option><option>11:30</option><option>12:00</option><option>12:30</option><option>13:00</option><option>13:30</option><option>14:00</option><option>14:30</option><option>15:00</option><option>15:30</option><option>16:00</option><option>16:30</option><option>17:00</option><option>17:30</option><option>18:00</option><option>18:30</option><option>19:00</option><option>19:30</option></select></div>
+          <div class="form-group" style="justify-content:flex-end;padding-top:0.2rem;"><div class="form-note">⏰ Mở cửa 09:00 – 22:30 hàng ngày</div></div>
+        </div>
+        <div class="form-group" style="margin-bottom:1.5rem;"><label>Ghi chú thêm</label><textarea id="f-note" placeholder="Yêu cầu đặc biệt, dị ứng thực phẩm, bàn đặc biệt..."></textarea></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;font-size:1rem;padding:15px;background:linear-gradient(135deg,#0068FF,#2E90FF);color:#fff;box-shadow:0 4px 24px rgba(0,104,255,0.35);" onclick="submitBookingZalo(event)">💬 Gửi Đặt Bàn Qua Zalo</button>
+        <div id="booking-success">🎉 Zalo đã mở! Vui lòng kiểm tra tin nhắn và nhấn <strong>Gửi</strong> để hoàn tất đặt bàn. Chúng tôi sẽ liên hệ xác nhận sớm nhất. Cảm ơn bạn đã chọn MÂY FOOD!</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MAP (rv structure) ===================== -->
+<section class="rv" id="map">
+  <div class="khung">
+    <div class="tieu-de">
+      <div>
+        <h2><i data-lucide="map-pinned"></i> Bản đồ & chỉ đường</h2>
+        <p>231 Phạm Ngũ Lão, Bảo An, Khánh Hòa, Việt Nam</p>
+      </div>
+    </div>
+    <div class="map-box" id="map-container"><iframe src="https://www.google.com/maps?q=11.589583,108.961657&z=16&output=embed" width="100%" height="380" style="border:0;border-radius:12px" allowfullscreen loading="lazy"></iframe></div>
+    <div class="trong" id="map-empty" style="display:none">
+      <p><a href="https://www.google.com/maps/place/Nh%C3%A0+h%C3%A0ng+May+food/data=!4m7!3m6!1s0x3170d11ae558417b:0xd160718dcc8e808!8m2!3d11.5895827!4d108.9616565!16s%2Fg%2F11qldnqkm6!19sChIJe0FY5RrRcDERCOjI3BgHFg0?authuser=0&hl=vi&rclk=1" target="_blank" rel="noopener" style="color:var(--gold);font-weight:900">Mở Google Maps</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact">
+  <div class="container">
+    <p class="section-eyebrow reveal" style="text-align:center">Kết nối với chúng tôi</p>
+    <h2 class="section-title reveal reveal-delay-1" style="text-align:center">Liên <em>Hệ</em></h2>
+    <div class="gold-line center reveal reveal-delay-1"></div>
+    <div class="contact-grid">
+      <div class="contact-card reveal"><div class="contact-icon">📞</div><div class="contact-label">Hotline</div><a href="tel:09xxxxxxxx" class="contact-value">09xxxxxxxx</a></div>
+      <div class="contact-card reveal reveal-delay-1"><div class="contact-icon">💬</div><div class="contact-label">Zalo</div><a href="https://zalo.me/0392631243" target="_blank" class="contact-value">0392631243</a></div>
+      <div class="contact-card reveal reveal-delay-2"><div class="contact-icon">📘</div><div class="contact-label">Facebook</div><a href="https://facebook.com/mayfood" target="_blank" class="contact-value">Mây Food</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">MÂY FOOD</div>
+  <div class="footer-slogan">Nhậu Chill · Mồi Ngon · Giá Hợp Lý</div>
+  <hr class="footer-divider">
+  <div class="footer-copy">© 2025 MÂY FOOD – 231 Phạm Ngũ Lão, Bảo An, Khánh Hòa. All rights reserved.</div>
+</footer>
+
+<div class="floating-actions">
+  <div class="fab-wrap"><span class="fab-label">Gọi điện</span><a href="tel:09xxxxxxxx" class="fab fab-phone" title="Gọi điện">📞</a></div>
+  <div class="fab-wrap"><span class="fab-label">Zalo</span><a href="https://zalo.me/0392631243" target="_blank" class="fab fab-zalo" title="Zalo"><svg width="22" height="22" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="20" fill="#0068FF"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-size="14" font-weight="bold" fill="white" font-family="Arial">Z</text></svg></a></div>
+  <div class="fab-wrap"><span class="fab-label">Messenger</span><a href="https://m.me/mayfood" target="_blank" class="fab fab-messenger" title="Messenger">💬</a></div>
+</div>
+
+<script>
+  // NAV SCROLL
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 60); });
+
+  // HAMBURGER
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+  document.querySelectorAll('.mobile-link').forEach(a => { a.addEventListener('click', () => { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }); });
+
+  // MENU TOGGLE
+  const menuToggleBtn   = document.getElementById('menu-toggle-btn');
+  const menuTabsPanel   = document.getElementById('menu-tabs-panel');
+  const menuToggleLabel = document.getElementById('menu-toggle-current');
+
+  menuToggleBtn.addEventListener('click', () => {
+    menuToggleBtn.classList.toggle('open');
+    menuTabsPanel.classList.toggle('open');
+  });
+
+  // MENU TABS
+  document.querySelectorAll('.menu-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('tab-' + target).classList.add('active');
+      menuToggleLabel.textContent = '— ' + tab.textContent.trim();
+      // close menu panel + scroll to menu content
+      menuToggleBtn.classList.remove('open');
+      menuTabsPanel.classList.remove('open');
+      document.getElementById('tab-' + target).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // MENU SEARCH
+  const menuSearchInput = document.getElementById('menu-search');
+  const menuSearchClear = document.getElementById('menu-search-clear');
+  const menuSearchInfo  = document.getElementById('menu-search-info');
+  const menuToggleWrap   = document.querySelector('.menu-toggle-wrap');
+  const allMenuPanels   = document.querySelectorAll('.menu-panel');
+  const allMenuItems    = document.querySelectorAll('.menu-item');
+
+  function normalizeVN(str) {
+    return str.toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/đ/g, 'd');
+  }
+
+  function applyMenuSearch() {
+    const raw = menuSearchInput.value.trim();
+    const query = normalizeVN(raw);
+    menuSearchClear.classList.toggle('show', raw.length > 0);
+
+    if (!query) {
+      // Restore normal tab view
+      menuToggleWrap.style.display = '';
+      menuSearchInfo.classList.remove('show');
+      allMenuItems.forEach(item => item.classList.remove('search-hidden'));
+      document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+      const activeTab = document.querySelector('.menu-tab.active') || document.querySelector('.menu-tab');
+      if (activeTab) {
+        document.getElementById('tab-' + activeTab.dataset.tab).classList.add('active');
+      }
+      return;
+    }
+
+    // Search mode: show all panels, filter items
+    menuToggleWrap.style.display = 'none';
+    let matchCount = 0;
+    allMenuPanels.forEach(panel => panel.classList.add('active'));
+    allMenuItems.forEach(item => {
+      const nameEl = item.querySelector('.menu-item-name');
+      const noteEl = item.querySelector('.menu-item-note');
+      const text = normalizeVN((nameEl ? nameEl.textContent : '') + ' ' + (noteEl ? noteEl.textContent : ''));
+      if (text.includes(query)) {
+        item.classList.remove('search-hidden');
+        matchCount++;
+      } else {
+        item.classList.add('search-hidden');
+      }
+    });
+
+    menuSearchInfo.classList.add('show');
+    if (matchCount === 0) {
+      menuSearchInfo.innerHTML = `Không tìm thấy món nào khớp với "<strong>${raw}</strong>".`;
+    } else {
+      menuSearchInfo.innerHTML = `Tìm thấy <strong>${matchCount}</strong> món khớp với "<strong>${raw}</strong>".`;
+    }
+  }
+
+  menuSearchInput.addEventListener('input', applyMenuSearch);
+  menuSearchClear.addEventListener('click', () => {
+    menuSearchInput.value = '';
+    applyMenuSearch();
+    menuSearchInput.focus();
+  });
+
+
+  
+
+  // BOOKING ZALO
+  const ZALO_PHONE = '0392631243';
+  function submitBookingZalo(event) {
+    event.preventDefault();
+    const name   = document.getElementById('f-name').value.trim();
+    const phone  = document.getElementById('f-phone').value.trim();
+    const guests = document.getElementById('f-guests').value;
+    const date   = document.getElementById('f-date').value;
+    const time   = document.getElementById('f-time').value;
+    const note   = document.getElementById('f-note').value.trim();
+    const choiEl = document.querySelector('input[name="f-choi"]:checked');
+    const choi   = choiEl ? choiEl.value : 'Chưa chọn';
+    if (!name || !phone || !date) { alert('Vui lòng điền đầy đủ họ tên, số điện thoại và ngày đặt.'); return; }
+    const [y, m, d] = date.split('-');
+    const dateFormatted = `${d}/${m}/${y}`;
+    const message = `✨ ĐẶT BÀN MỚI - MÂY FOOD ✨\n━━━━━━━━━━━━━━━━━━━━━━━━━\n👤 Họ tên    : ${name}\n📞 Điện thoại: ${phone}\n👥 Số khách  : ${guests || 'Chưa chọn'}\n🛖 Chòi muốn : ${choi}\n📅 Ngày đặt  : ${dateFormatted}\n⏰ Giờ đến   : ${time || 'Chưa chọn'}\n📝 Ghi chú   : ${note || 'Không có'}\n━━━━━━━━━━━━━━━━━━━━━━━━━\n📍 231 Phạm Ngũ Lão, Bảo An, Khánh Hòa\n🕓 Mở cửa: 09:00 – 22:30 hàng ngày`;
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(message).catch(e=>console.log(e));
+    else { const ta = document.createElement("textarea"); ta.value = message; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
+    window.open(`https://zalo.me/${ZALO_PHONE}?text=${encodeURIComponent(message)}`, '_blank');
+    const successBox = document.getElementById('booking-success');
+    successBox.innerHTML = `🎉 Đã sao chép thông tin & mở Zalo! Nếu ô chat trống, hãy dán (Paste) tin nhắn và gửi.`;
+    successBox.style.display = 'block';
+    successBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    ['f-name','f-phone','f-guests','f-date','f-time','f-note'].forEach(id => { const el = document.getElementById(id); if (el.tagName === 'SELECT') el.selectedIndex = 0; else el.value = ''; });
+    document.querySelectorAll('input[name="f-choi"]').forEach(r => r.checked = false);
+    setTimeout(() => successBox.style.display = 'none', 10000);
+  }
+
+  
+
+  
+  // Duplicate marquee items for seamless loop
+  document.querySelectorAll('.marquee-track').forEach(track => {
+    const clone = track.innerHTML;
+    track.innerHTML += clone;
+  });
+
+  // Touch-to-pause: chạm vào ảnh → dừng; bỏ tay → cuộn tiếp
+  document.querySelectorAll('.mq-item').forEach(item => {
+    const track = item.closest('.marquee-track');
+
+    // Touch events (mobile)
+    item.addEventListener('touchstart', (e) => {
+      track.classList.add('paused');
+      item.classList.add('touch-active');
+    }, { passive: true });
+
+    item.addEventListener('touchend', () => {
+      track.classList.remove('paused');
+      item.classList.remove('touch-active');
+    });
+
+    item.addEventListener('touchcancel', () => {
+      track.classList.remove('paused');
+      item.classList.remove('touch-active');
+    });
+
+    // Click/tap để mở lightbox (chỉ khi không kéo)
+    item.addEventListener('click', () => {
+      openLightbox(item);
+    });
+  });
+
+  // Lightbox
+  function openLightbox(el) {
+    const src = el.dataset.src || el.querySelector('img').src;
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  document.getElementById('lightbox-close').addEventListener('click', () => {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  });
+  document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) { this.classList.remove('open'); document.body.style.overflow = ''; }
+  });
+
+  // SCROLL REVEAL
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }); }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // DATE MIN
+  const dateInput = document.getElementById('f-date');
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.min = today;
+
+  // YEARS/DAYS OPEN SINCE 01/01/2023
+  (function() {
+    const openDate = new Date(2023, 0, 1);
+    const now = new Date();
+    let years = now.getFullYear() - openDate.getFullYear();
+    let months = now.getMonth() - openDate.getMonth();
+    let days = now.getDate() - openDate.getDate();
+    if (days < 0) {
+      months -= 1;
+      const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+      days += prevMonth.getDate();
+    }
+    if (months < 0) {
+      years -= 1;
+      months += 12;
+    }
+    const el = document.getElementById('years-open');
+    let text = '';
+    if (years > 0) text += years + ' năm ';
+    if (months > 0) text += months + ' tháng ';
+    text += days + ' ngày';
+    el.textContent = text.trim();
+  })();
+</script>
+</body>
+</html>
