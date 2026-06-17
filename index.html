@@ -1452,7 +1452,7 @@
         <div style="margin-bottom:1.8rem;">
           <div class="seating-picker-label" style="margin-bottom:0.9rem;">
             Bạn muốn ngồi bên khu vực nào?
-            <span class="seating-hint">👇 Quán có 2 quản lý</span>
+            <span class="seating-hint">👇 Quán có 2 khu riêng</span>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
             <div class="choi-card" style="width:100%;">
@@ -1560,7 +1560,7 @@
     <div class="gold-line center reveal reveal-delay-1"></div>
     <div class="contact-grid">
       <div class="contact-card reveal"><div class="contact-icon">📞</div><div class="contact-label">Hotline (Anh Hưng)</div><a href="tel:0907977438" class="contact-value">0907 977 438</a></div>
-      <div class="contact-card reveal reveal-delay-1"><div class="contact-icon">💬</div><div class="contact-label">Zalo</div><a href="https://zalo.me/0392631243" target="_blank" class="contact-value">0392631243</a></div>
+      <div class="contact-card reveal reveal-delay-1"><div class="contact-icon">💬</div><div class="contact-label">Zalo (Chị Dung)</div><a href="https://zalo.me/0984140243" target="_blank" class="contact-value">0984 140 243</a></div>
       <div class="contact-card reveal reveal-delay-2"><div class="contact-icon">🎵</div><div class="contact-label">TikTok</div><a href="https://www.tiktok.com/@mayfoodninhthuan2024" target="_blank" class="contact-value">@mayfoodninhthuan2024</a></div>
     </div>
   </div>
@@ -1575,7 +1575,7 @@
 
 <div class="floating-actions">
   <div class="fab-wrap"><span class="fab-label">Gọi điện</span><a href="tel:0907977438" class="fab fab-phone" title="Gọi điện">📞</a></div>
-  <div class="fab-wrap"><span class="fab-label">Zalo</span><a href="https://zalo.me/0392631243" target="_blank" class="fab fab-zalo" title="Zalo"><svg width="22" height="22" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="20" fill="#0068FF"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-size="14" font-weight="bold" fill="white" font-family="Arial">Z</text></svg></a></div>
+  <div class="fab-wrap"><span class="fab-label">Zalo</span><a href="https://zalo.me/0984140243" target="_blank" class="fab fab-zalo" title="Zalo"><svg width="22" height="22" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="20" fill="#0068FF"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-size="14" font-weight="bold" fill="white" font-family="Arial">Z</text></svg></a></div>
   <div class="fab-wrap"><span class="fab-label">TikTok</span><a href="https://www.tiktok.com/@mayfoodninhthuan2024" target="_blank" class="fab" style="background:linear-gradient(135deg,#010101,#69C9D0);color:#fff;" title="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.79 1.52V6.75a4.85 4.85 0 0 1-1.02-.06z"/></svg></a></div>
 </div>
 
@@ -1682,8 +1682,20 @@
 
   
 
-  // BOOKING ZALO
-  const ZALO_PHONE = '0392631243';
+  // BOOKING ZALO – ngẫu nhiên, ưu tiên chị Dung (70%)
+  const ZALO_STAFF = [
+    { name: 'Chị Dung', phone: '0984140243', weight: 70 },
+    { name: 'Anh Hưng', phone: '0907977438', weight: 30 }
+  ];
+  function pickZaloStaff() {
+    const rand = Math.random() * 100;
+    let cumulative = 0;
+    for (const staff of ZALO_STAFF) {
+      cumulative += staff.weight;
+      if (rand < cumulative) return staff;
+    }
+    return ZALO_STAFF[0];
+  }
   function submitBookingZalo(event) {
     event.preventDefault();
     const name   = document.getElementById('f-name').value.trim();
@@ -1699,12 +1711,13 @@
     if (!name || !phone || !date) { alert('Vui lòng điền đầy đủ họ tên, số điện thoại và ngày đặt.'); return; }
     const [y, m, d] = date.split('-');
     const dateFormatted = `${d}/${m}/${y}`;
+    const staff = pickZaloStaff();
     const message = `✨ ĐẶT BÀN MỚI - MÂY FOOD ✨\n━━━━━━━━━━━━━━━━━━━━━━━━━\n👤 Họ tên    : ${name}\n📞 Điện thoại: ${phone}\n👥 Số khách  : ${guests || 'Chưa chọn'}\n🏘️ Khu vực  : ${khu}\n🛖 Chòi muốn : ${choi}\n📅 Ngày đặt  : ${dateFormatted}\n⏰ Giờ đến   : ${time || 'Chưa chọn'}\n📝 Ghi chú   : ${note || 'Không có'}\n━━━━━━━━━━━━━━━━━━━━━━━━━\n📍 231 Phạm Ngũ Lão, Bảo An, Khánh Hòa\n🕓 Mở cửa: 09:00 – 22:30 hàng ngày`;
     if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(message).catch(e=>console.log(e));
     else { const ta = document.createElement("textarea"); ta.value = message; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); }
-    window.open(`https://zalo.me/${ZALO_PHONE}?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://zalo.me/${staff.phone}?text=${encodeURIComponent(message)}`, '_blank');
     const successBox = document.getElementById('booking-success');
-    successBox.innerHTML = `🎉 Đã sao chép thông tin & mở Zalo! Nếu ô chat trống, hãy dán (Paste) tin nhắn và gửi.`;
+    successBox.innerHTML = `🎉 Đã sao chép thông tin & mở Zalo ${staff.name}! Nếu ô chat trống, hãy dán (Paste) tin nhắn và gửi.`;
     successBox.style.display = 'block';
     successBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     ['f-name','f-phone','f-guests','f-date','f-time','f-note'].forEach(id => { const el = document.getElementById(id); if (el.tagName === 'SELECT') el.selectedIndex = 0; else el.value = ''; });
